@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="align-items-center">
-                        <img src="{{asset('storage/img/milkovi-444287-unsplashRedim.jpg')}}" alt="Reunion" class="img-fluid rounded-circle">
+                        <img src="{{asset('storage/img/masqueunservicio.jpg')}}" alt="Reunion" class="img-fluid rounded-circle">
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/attach-2092_1920.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/clips.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -171,7 +171,7 @@
             <div class="row">
                 <div class="col-md-6 order-2">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/business-cellphone-chess-910330Redim.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/ajedrez.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mb-3 order-1">
@@ -254,7 +254,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/rawpixel-252130-unsplashRedim.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/agenda.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -346,7 +346,7 @@
             <div class="row">
                 <div class="col-md-6 order-2">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/apple-brainstorming-business-908288redim.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/finance.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mb-3 order-1">
@@ -429,7 +429,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/adult-agreement-beard-541525redim.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/portatilperiodico.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mt-4 mb-2">
@@ -481,7 +481,7 @@
             <div class="row">
                 <div class="col-md-6 order-2">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/estee-janssens-396887-unsplashRedim.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/administracion.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mb-3 order-1">
@@ -564,7 +564,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="align-items-center">
-                        <img src="{{ asset('storage/img/rawpixel-570911-unsplashRedim.jpg') }}" alt="clip" class="img-fluid rounded-circle">
+                        <img src="{{ asset('storage/img/consultoria.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
                 <div class="col-md-6 mt-4 mb-2">

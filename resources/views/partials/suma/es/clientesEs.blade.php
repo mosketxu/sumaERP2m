@@ -26,7 +26,7 @@
 
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('storage/img/rawpixel-974545-unsplashRedim.jpg')}}" alt="Clientes" class="img-fluid rounded-circle d-none d-md-block about-img">
+                    <img src="{{ asset('storage/img/clientes.jpg')}}" alt="Clientes" class="img-fluid rounded-circle d-none d-md-block about-img">
                 </div>
             </div>
         </div>

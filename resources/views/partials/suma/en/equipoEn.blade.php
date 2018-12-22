@@ -23,7 +23,7 @@
                         and that are not in our portfolio of services, so that we can provide a complete and centralized service to our customers.</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('storage/img/rawpixel-653764-unsplashRedim.jpg')}}" alt="Equipo" class="img-fluid rounded-circle d-none d-md-block about-img">
+                    <img src="{{ asset('storage/img/equipo.jpg')}}" alt="Equipo" class="img-fluid rounded-circle d-none d-md-block about-img">
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="tarjeta p-3">
                         <div class="tarjeta-title mt-3">
-                            <img src="{{ asset('storage/img/DSC_0894Marta3Redim.jpg')}}" alt="Marta Ruiz" class="img-fluid rounded-circle w-50 mb-3">
+                            <img src="{{ asset('storage/img/marta.jpg')}}" alt="Marta Ruiz" class="img-fluid rounded-circle w-50 mb-3">
                             <h3>Marta Ruiz</h3>
                         </div>
                         <div class="tarjeta-subtitle">
@@ -58,7 +58,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="tarjeta p-3">
                         <div class="tarjeta-title mt-3">
-                            <img src="{{ asset('storage/img/Susana1_redim.jpg')}}" alt="Susana Ruiz" class="img-fluid rounded-circle w-50 mb-3">
+                            <img src="{{ asset('storage/img/susana.jpg')}}" alt="Susana Ruiz" class="img-fluid rounded-circle w-50 mb-3">
                             <h3>Susana Martinez</h3>
                         </div>
                         <div class="tarjeta-subtitle">
@@ -83,7 +83,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="tarjeta p-3">
                         <div class="tarjeta-title mt-3">
-                            <img src="{{ asset('storage/img/DSC_0827AlexRedim.jpg')}}" alt="Alexander Arregui" class="img-fluid rounded-circle w-50 mb-3">
+                            <img src="{{ asset('storage/img/alex.jpg')}}" alt="Alexander Arregui" class="img-fluid rounded-circle w-50 mb-3">
                             <h3>Alexander Arregui</h3>
                         </div>
                         <div class="tarjeta-subtitle">
@@ -108,7 +108,7 @@
                 <div class="col-md-6 mb-3">
                     <div class="tarjeta p-3">
                         <div class="tarjeta-title mt-3">
-                            <img src="{{ asset('storage/img/DSC_0940DolorsRedim.jpg')}}" alt="Dolors Celdrán" class="img-fluid rounded-circle w-50 mb-3">
+                            <img src="{{ asset('storage/img/dolors.jpg')}}" alt="Dolors Celdrán" class="img-fluid rounded-circle w-50 mb-3">
                             <h3>Dolors Celdrán</h3>
                         </div>
                         <div class="tarjeta-subtitle">
@@ -133,7 +133,7 @@
                 <div class="col-md-6 mb-3 offset-md-3">
                     <div class="tarjeta p-3">
                         <div class="tarjeta-title mt-3">
-                            <img src="{{ asset('storage/img/MiriamDSC_0806Redim.jpg')}}" alt="Miriam Marin" class="img-fluid rounded-circle w-50 mb-3">
+                            <img src="{{ asset('storage/img/miriam.jpg')}}" alt="Miriam Marin" class="img-fluid rounded-circle w-50 mb-3">
                             <h3>Miriam Marin</h3>
                         </div>
                         <div class="tarjeta-subtitle">
