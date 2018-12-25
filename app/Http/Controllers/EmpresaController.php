@@ -14,6 +14,7 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
     public function index()
     {
         $empresas = Empresa::with([
@@ -28,34 +29,19 @@ class EmpresaController extends Controller
             }
         ])->get();
 
-        // if (auth()->user()->role_id == '1') {
+        if (auth()->user()->role_id == '1') {
         return view('partials.erp.admin', compact('empresas'));
-        // } elseif (auth()->user()->role_id == '2') {
-            // return view('partials.erp.suma', compact('empresas'));
-        // }
-        // return view('partials.erp.cliente', compact('empresas'));
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $empresas = Empresas::all();
+        } elseif (auth()->user()->role_id == '2') {
+            return view('partials.erp.suma', compact('empresas'));
+        }
         return view('partials.erp.cliente', compact('empresas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
+        if(!$request->ajax())return redirect('/');
+
         $empresa = new Empresa();
 
         $empresa->name = $request->name;
@@ -77,8 +63,7 @@ class EmpresaController extends Controller
 
         $empresa->save();;
 
-        return redirect('erp/empresas')->with('message', 'Guardado Satisfactoriamente !');
-
+        // return redirect('erp/empresas')->with('message', 'Guardado Satisfactoriamente !');
     }
 
     /**
@@ -100,20 +85,7 @@ class EmpresaController extends Controller
                     ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
             }
         ])->whereSlug($slug)->first();
-
         return view('partials.erp.empresa', compact('empresa'));
-        // return view('partials.erp.empresa');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($slug)
-    {
-        //
     }
 
     /**
@@ -123,9 +95,29 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request)
     {
-        //
+        if(!$request->ajax())return redirect('/');
+        $empresa=Empresa::findOrFail($request->id);
+
+        $empresa->name = $request->name;
+        $empresa->direccion = $request->direccion;
+        $empresa->codpostal = $request->codpostal;
+        $empresa->localidad = $request->localidad;
+        $empresa->provincia_id = $request->provincia_id;
+        $empresa->pais_id = $request->pais_id;
+        $empresa->cifnif = $request->cifnif;
+        $empresa->tfno = $request->tfno;
+        $empresa->email = $request->email;
+        $empresa->web = $request->web;
+        $empresa->idioma = $request->idioma;
+        $empresa->cuentacontable = $request->cuentacontable;
+        $empresa->marta = $request->marta;
+        $empresa->susana = $request->susana;
+        $empresa->observaciones = $request->observaciones;
+        $empresa->estado = $request->estado;
+
+        $empresa->save();;
     }
 
     /**
@@ -137,6 +129,6 @@ class EmpresaController extends Controller
     public function destroy($slug)
     {
         Empresa::findOrFail($slug)->delete();
-        return redirect()->back();
+        // return redirect()->back();
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.layoutsuma')
+@extends('layouts.suma')
 @section('clientes','active')
 
 @if(App::getLocale()=='es')

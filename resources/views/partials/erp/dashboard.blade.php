@@ -1,5 +1,4 @@
 @extends('layouts.erp')
-
 @section('content')
     <div id="content-wrapper">
     <div class="container-fluid">
@@ -11,15 +10,16 @@
             <li class="breadcrumb-item active">Overview</li>
         </ol>
 
-        <!-- Cliente-->
+        <!-- Tabla Empresas -->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fas fa-user"></i> Zona Cliente
+                <i class="fas fa-fw fa-address-card"></i>
+                Listado Empresas
             </div>
             <div class="card-body">
-                <h1>eres cliente</h1>
+                <!-- Tabla Empresas -->
+                @include('partials.erp.empresas_table')
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
 
         <!-- Icon Cards-->
@@ -92,5 +92,6 @@
             </div>
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
+
     </div>
 @endsection

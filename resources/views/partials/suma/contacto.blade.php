@@ -1,4 +1,4 @@
-@extends('layouts.layoutsuma')
+@extends('layouts.suma')
 @section('contacto','active')
 
 @if(App::getLocale()=='es')

@@ -1,4 +1,4 @@
-@extends('layouts.layoutsuma')
+@extends('layouts.suma')
 
 @section('piefijo','fixed-bottom mt-5 mb-3')
 @section('politica','active')

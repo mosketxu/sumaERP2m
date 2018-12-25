@@ -1,9 +1,15 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('home')}}">
+          <a class="nav-link" href="{{route('erp.index')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{route('empresas.index')}}">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>Empresas</span>
           </a>
         </li>
         <li class="nav-item">

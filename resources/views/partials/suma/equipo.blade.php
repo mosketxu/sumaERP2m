@@ -1,4 +1,4 @@
-@extends('layouts.layoutsuma')
+@extends('layouts.suma')
 @section('title','Suma Apoyo - Equipo ')
 @section('equipo','active')
 

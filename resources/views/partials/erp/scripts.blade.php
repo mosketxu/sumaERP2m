@@ -1,12 +1,8 @@
 
     {{-- Datatables --}}
-    {{-- <script src="{{asset('/storage/vendor/chart.js/Chart.min.js')}}"></script> --}}
-    {{-- <script src="{{asset('/storage/vendor/datatables/jquery.dataTables.js')}}"></script> --}}
-    {{-- <script src="{{asset('/storage/vendor/datatables/dataTables.bootstrap4.js')}}"></script> --}}
-
-    <script src="{{asset('/js/Chart.min.js')}}"></script>
-    <script src="{{asset('/js/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('/js/dataTables.bootstrap4.js')}}"></script>
+    {{-- <script src="{{asset('/js/Chart.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('/js/jquery.dataTables.js')}}"></script> --}}
+    {{-- <script src="{{asset('/js/dataTables.bootstrap4.js')}}"></script> --}}
 
     {{-- <script src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.bootstrap4.min.js"></script>
@@ -21,6 +17,6 @@
 
     <!-- Demo scripts for this page-->
     {{-- <script src="js/demo/datatables-demo.js"></script> --}}
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
+    {{-- <script src="{{asset('js/demo/chart-area-demo.js')}}"></script> --}}
 
 

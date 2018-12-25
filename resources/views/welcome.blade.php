@@ -1,4 +1,4 @@
-@extends('layouts.layoutsuma')
+@extends('layouts.suma')
 
 @section('menuservicios')
     <li class="nav-item dropdown" >

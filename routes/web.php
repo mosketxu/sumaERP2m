@@ -16,8 +16,6 @@ Route::get('/set_language/{lang}', 'Controller@setLanguage')->name('set_language
 Auth::routes();
 
 Route::get('/', 'SumaController@index')->name('home');
-
-
 Route::get('/servicios', 'SumaController@servicios')->name('suma.servicios');
 Route::get('/equipo', 'SumaController@equipo')->name('suma.equipo');
 Route::get('/clientes', 'SumaController@clientes')->name('suma.clientes');
@@ -25,9 +23,10 @@ Route::get('/contacto', 'SumaController@contacto')->name('suma.contacto');
 Route::get('/politica', 'SumaController@politica')->name('suma.politica');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
-    Route::get('/', 'EmpresaController@index')->name('empresas.index');
-
+    Route::get('/', 'ErpController@index')->name('erp.index');
+    
     Route::group(['prefix' => 'empresas'], function () {
+        Route::get('/', 'EmpresaController@index')->name('empresas.index');
         Route::get('/{slug}', 'EmpresaController@show')->name('empresas.show');
         Route::get('/{slug}/edit', 'EmpresaController@edit')->name('empresas.edit');
         Route::get('/{slug}/destroy', 'EmpresaController@destroy')->name('empresas.destroy');
@@ -42,10 +41,3 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     });
 
 });
-
-// Route::group(['prefix' => 'erp'], function () {
-// Route::get('erp', 'EmpresaController@index');
-// Route::get('erp/home', 'EmpresaController@index')->name('erp.home');
-// Route::get('erp/empresas', 'EmpresaController@show')->name('erp.empresas');
-    // Route::get('/empresa/{empresa}', 'EmpresaController@show')->name('erp.empresa');
-// });
