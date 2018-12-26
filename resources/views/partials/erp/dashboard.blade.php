@@ -11,16 +11,7 @@
         </ol>
 
         <!-- Tabla Empresas -->
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-fw fa-address-card"></i>
-                Listado Empresas
-            </div>
-            <div class="card-body">
-                <!-- Tabla Empresas -->
-                @include('partials.erp.empresas_table')
-            </div>
-        </div>
+        @include('partials.erp.empresas_table')
 
         <!-- Icon Cards-->
         <div class="row">
@@ -94,4 +85,30 @@
         </div>
 
     </div>
+@endsection
+
+@section('scriptsextra')
+    <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $value=$(this).val();
+            if ($value){
+                $.ajax({
+                    type : 'get',
+                    url : '{{URL::to('/erp/search')}}',
+                    data:{'search':$value},
+                    success:function(data){
+                        $('tbody').html(data);
+                    }
+                });
+            }
+            else{
+               // alert('no hay');
+            }
+        })
+    </script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>
+ 
 @endsection

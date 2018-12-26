@@ -22,8 +22,10 @@ Route::get('/clientes', 'SumaController@clientes')->name('suma.clientes');
 Route::get('/contacto', 'SumaController@contacto')->name('suma.contacto');
 Route::get('/politica', 'SumaController@politica')->name('suma.politica');
 
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     Route::get('/', 'ErpController@index')->name('erp.index');
+    Route::get('/search','ErpController@search');
     
     Route::group(['prefix' => 'empresas'], function () {
         Route::get('/', 'EmpresaController@index')->name('empresas.index');
