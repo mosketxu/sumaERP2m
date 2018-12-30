@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empresa;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -17,20 +18,18 @@ class EmpresaController extends Controller
     // public function index()
     public function index()
     {
-        $empresas = Empresa::with([
-            'tipoempresa',
-            'bancos' => function ($q) {
-                $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                    ->where('principal', '=', '1');
-            },
-            'condFacturacions' => function ($q) {
-                $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
-            }
-        ])->get();
-
+        $empresas = DB::table('empresas')
+            ->join('bancos', 'empresas.id', '=', 'bancos.empresa_id')
+            ->join('banks', 'banks.id', '=', 'bancos.bank_id')
+            ->join('condicion_facturacions', 'empresas.id', '=', 'condicion_facturacions.empresa_id')
+            ->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+            ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id')
+            ->join('tipo_empresas', 'tipo_empresas.id', '=', 'empresas.tipoempresa_id')
+            ->orderBy('empresas.name')
+            ->paginate(25);
+            
         if (auth()->user()->role_id == '1') {
-        return view('partials.erp.admin', compact('empresas'));
+            return view('partials.erp.empresas', compact('empresas'));
         } elseif (auth()->user()->role_id == '2') {
             return view('partials.erp.suma', compact('empresas'));
         }
@@ -129,6 +128,61 @@ class EmpresaController extends Controller
     public function destroy($slug)
     {
         Empresa::findOrFail($slug)->delete();
-        // return redirect()->back();
+        return redirect()->back();
     }
+
+    public function search(Request $request){
+        if($request->ajax()){
+            $output="";
+            $empresas = DB::table('empresas')
+                ->join('bancos', 'empresas.id', '=', 'bancos.empresa_id')
+                ->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                ->join('condicion_facturacions', 'empresas.id', '=', 'condicion_facturacions.empresa_id')
+                ->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id')
+                ->join('tipo_empresas', 'tipo_empresas.id', '=', 'empresas.tipoempresa_id')
+                ->where('empresas.name','LIKE','%'.$request->search."%")
+                ->orWhere('bancos.iban','LIKE','%'.$request->search."%")
+                ->orWhere('empresas.cifnif','LIKE','%'.$request->search."%")
+                ->get();
+            $total_row=$empresas->count();
+
+            if($empresas){
+                foreach ($empresas as $key => $empresa) {
+                    if($empresa->estado==1){
+                        $est='<i class="fa fa-check "></i>';
+                    }
+                    else{
+                        $est='<i class="far fa-times-circle text-danger"></i>';
+                    }
+                    $output.=
+                        '<tr>'.
+                            '<td>'.$empresa->name.'</td>'.
+                            '<td>'.$empresa->tipempr3.'</td>'.
+                            '<td>'.$empresa->cifnif.'</td>'.
+                            '<td>'.$empresa->cuentacontable.'</td> '.
+                            '<td>'.substr($empresa->bank,0,5).'</td>'.
+                            '<td>'.$empresa->iban.'</td>'.
+                            '<td>'.substr($empresa->periodopago,0,5).'</td>'.
+                            '<td>'.substr($empresa->formapago,0,5).'</td>'.
+                            '<td>'.$empresa->diavencimiento.'</td>'.
+                            '<td>'.$est.'</td>'.
+                            '<td>'.
+                                '<a href='.route("empresas.show",$empresa->slug).'><i class="far fa-eye text-success"></i></a>'.
+                                '<a href='.route("empresas.edit",$empresa->slug) .'><i class="far fa-edit text-primary"></i></a>'.
+                                '<a href='.route("empresas.destroy",$empresa->slug).'><i class="far fa-trash-alt text-danger"></i></a>'.
+                            '</td>'.
+                        '</tr>';
+                }
+            }
+            else{
+                $output.=
+                '<tr>'.
+                    '<td colspam="10">No hay datos</td>'.
+                '</tr>';
+            }
+            return Response($output);
+        }
+    }
+
 }

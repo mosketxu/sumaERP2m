@@ -5,9 +5,9 @@
     </head>
 
     <body id="page-top">
-        {{-- <header id="header" class="header"> --}}
+        <header id="header" class="header">
             @include('partials.erp.topmenu')
-        {{-- </header> --}}
+        </header>
 
         <section id="wrapper">
             @include('partials.erp.sidebar')

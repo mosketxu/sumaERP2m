@@ -1,4 +1,4 @@
-      <!-- Sidebar -->
+        <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="{{route('erp.index')}}">
@@ -6,14 +6,14 @@
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="{{route('empresas.index')}}">
             <i class="fas fa-fw fa-address-card"></i>
             <span>Empresas</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('usuarios.index')}}">
+          <a class="nav-link" href="{{route('user.index')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span></a>
         </li>
