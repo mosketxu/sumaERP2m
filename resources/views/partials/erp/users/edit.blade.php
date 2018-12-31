@@ -56,14 +56,17 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-pencil-ruler text-primary"></i></span>
                                 </div>
-                                <select class="custom-select custom-select-sm" name="userroleId">
+                                <select class="custom-select custom-select-sm" name="userroleId" id="userroleId">
+                                    <option value="">Selecciona un rol</option>
                                     @if ($roles->count())
                                         @foreach($roles as $role)
-                                        <option value="{{ $role->id }}" selected="{{ $selectedRole == $role->id ? 'selected' : '' }} " >{{ $role->rol }}</option> 
+                                        <option value="{{ $role->id }}" {{old('userroleId',$user->role_id) == $role->id ? ' selected' : '' }} >{{ $role->rol }}</option> 
                                         @endforeach
                                     @endif
                                 </select>
                             </div>
+
+
 
 
                         </div>

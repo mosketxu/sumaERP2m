@@ -82,9 +82,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles=Role::all();
-        $selectedRole = User::first()->role_id;
 
-        return view('partials.erp.users.edit', compact('user','roles','selectedRole'));
+        return view('partials.erp.users.edit', compact('user','roles'));
     }
 
     /**
