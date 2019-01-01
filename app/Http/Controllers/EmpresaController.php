@@ -6,18 +6,13 @@ use Illuminate\Http\Request;
 use App\Empresa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Auth;
 
 class EmpresaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
     public function index()
     {
+        $user = Auth::user();
         $empresas = DB::table('empresas')
             ->join('bancos', 'empresas.id', '=', 'bancos.empresa_id')
             ->join('banks', 'banks.id', '=', 'bancos.bank_id')
@@ -29,11 +24,11 @@ class EmpresaController extends Controller
             ->paginate(25);
             
         if (auth()->user()->role_id == '1') {
-            return view('partials.erp.empresas', compact('empresas'));
+            return view('partials.erp.empresas', compact('empresas','user'));
         } elseif (auth()->user()->role_id == '2') {
-            return view('partials.erp.suma', compact('empresas'));
+            return view('partials.erp.suma', compact('empresas','user'));
         }
-        return view('partials.erp.cliente', compact('empresas'));
+        return view('partials.erp.cliente', compact('empresas','user'));
     }
 
 
@@ -73,6 +68,7 @@ class EmpresaController extends Controller
      */
     public function show($slug)
     {
+        $user = Auth::user();
         $empresa = Empresa::with([
             'tipoempresa',
             'bancos' => function ($q) {
@@ -84,7 +80,7 @@ class EmpresaController extends Controller
                     ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
             }
         ])->whereSlug($slug)->first();
-        return view('partials.erp.empresa', compact('empresa'));
+        return view('partials.erp.empresa', compact('empresa','user'));
     }
 
     /**

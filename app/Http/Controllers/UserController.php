@@ -5,42 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{User,Role};
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
+        $user = Auth::user();
         $usuarios = User::with([
             'role',
         ])->get();
-
-        return view('partials.erp.users.index', compact('usuarios'));
+        return view('partials.erp.users.index', compact('usuarios','user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles=Role::all();
-        
         return view('partials.erp.users.create',compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -48,7 +33,6 @@ class UserController extends Controller
             'useremail'=> 'required|email|unique:users,email',
             'userpassword' => 'required|min:6|confirmed',
             'userroleId'=>'required'
-
         ]);
         $user = new User([
             'name' => $request->get('username'),
@@ -61,38 +45,20 @@ class UserController extends Controller
           return redirect('/erp/user')->with('success', 'el usuario '. $user->name.' se ha añadido');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($slug)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = Auth::user();
+        $userEdit = User::find($id);
         $roles=Role::all();
 
-        return view('partials.erp.users.edit', compact('user','roles'));
+        return view('partials.erp.users.edit', compact('user','userEdit','roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -123,24 +89,35 @@ class UserController extends Controller
         }else{
             unset($data['password']);
         }
-
         $user->role_id= $request->get('userroleId');
-
         // $user->save();
-        
         $user->update($data);
-        
         return redirect('/erp/user')->with('success', 'el usuario '. $user->name.' se ha actualizado');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($slug)
     {
         //
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('partials.erp.users.profile',compact('user',$user));
+    }
+
+    public function update_avatar(Request $request){
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
+        $request->avatar->storeAs('img/avatar',$avatarName);
+        $user->avatar = $avatarName;
+        $user->save();
+
+        return back()
+            ->with('success','You have successfully upload image.');
     }
 }
