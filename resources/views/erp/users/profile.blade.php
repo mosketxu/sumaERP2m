@@ -34,15 +34,18 @@
                     </div>
                     @endif
                     <div class="row justify-content-center">
-                            <div class="img-thumbnail rounded-circle">
-                                <img class=" photoUsuario" src="{{asset('storage/img/avatar/'.$user->avatar)}}" />
-                            </div>
-                    </div>
-                    <div class="row justify-content-center">
                         <form method="post" action="{{ route('user.updateavatar') }}" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <input type="file" class="form-control-file" name="avatar" id="avatarFile" aria-describedby="fileHelp">
+                            <div class="wizard-card" data-color="orange" id="wizardProfile">
+                                <div class="form-group">
+                                    <input type="file" class="form-control-file" name="avatar" id="avatarFile" aria-describedby="fileHelp">
+                                    <div class="picture-container">
+                                        <div class="picture">
+                                            <img src="{{asset('storage/img/avatar/'.$user->avatar)}}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                            <input type="file" id="wizard-picture">
+                                        </div>
+                                    </div>
+                                </div>
                                 <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

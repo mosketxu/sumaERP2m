@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/set_language/{lang}', 'Controller@setLanguage')->name('set_language');
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+]);
+// Auth::routes();
+
 
 Route::get('/', 'SumaController@index')->name('home');
 Route::get('/servicios', 'SumaController@servicios')->name('suma.servicios');
@@ -27,13 +31,13 @@ Route::get('/politica', 'SumaController@politica')->name('suma.politica');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     Route::get('/', 'ErpController@index')->name('erp.index');
-    
+
     Route::group(['prefix' => 'empresas'], function () {
         Route::get('/', 'EmpresaController@index')->name('empresas.index');
         Route::get('/{slug}', 'EmpresaController@show')->name('empresas.show');
         Route::get('/{slug}/edit', 'EmpresaController@edit')->name('empresas.edit');
         Route::get('/{slug}/destroy', 'EmpresaController@destroy')->name('empresas.destroy');
-        Route::get('empresas/search','EmpresaController@search')->name('empresas.search');
+        Route::get('empresas/search', 'EmpresaController@search')->name('empresas.search');
     });
 
     Route::resource('user', 'UserController');

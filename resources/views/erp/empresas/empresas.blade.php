@@ -9,15 +9,20 @@
             </li>
             <li class="breadcrumb-item active">Overview</li>
         </ol>
-        
+
         <!-- tabla empresas -->
         <div class="card mb-3">
             <div class="card-header text-primary">
                 <div class="row">
-                        <div class="col-auto mr-auto">
+                        <div class="col-auto ">
                             <i class="fas fa-fw fa-address-card"></i>
                             Listado Empresas
                         </div>
+                        @can('create',\App\Empresa::class)
+                            <div class="col-auto mr-auto">
+                                <a href="#" role="button"><i class="fas fa-plus-circle fa-lg text-primary"></i></a>
+                            </div>
+                        @endcan
                         <div class="col-auto">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">

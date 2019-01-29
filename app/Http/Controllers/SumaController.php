@@ -11,29 +11,24 @@ class SumaController extends Controller
         return view('welcome');
     }
 
-    // public function suma($tag)
-    // {
-    //     return view('partials.suma.' . $tag);
-    // }
-
     public function servicios()
     {
-        return view('partials.suma.servicios');
+        return view('suma.servicios');
     }
     public function equipo()
     {
-        return view('partials.suma.equipo');
+        return view('suma.equipo');
     }
     public function clientes()
     {
-        return view('partials.suma.clientes');
+        return view('suma.clientes');
     }
     public function contacto()
     {
-        return view('partials.suma.contacto');
+        return view('suma.contacto');
     }
     public function politica()
     {
-        return view('partials.suma.politica');
+        return view('suma.politica');
     }
 }

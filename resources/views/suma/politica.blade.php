@@ -15,12 +15,12 @@
 @if(App::getLocale()=='es')
     @section('title','Suma - Politica Seguridad')
     @section('content')
-        @include('partials.suma.es.politicaEs')    
+        @include('suma.es.politicaEs')    
     @endsection
 @else
     @section('title','Suma - Private Policy')
     @section('content')
-        @include('partials.suma.en.politicaEn')    
+        @include('suma.en.politicaEn')    
     @endsection
 @endif
 

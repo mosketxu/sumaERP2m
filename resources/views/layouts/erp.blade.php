@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        @include('partials.erp.head')
+        @include('partials._head')
     </head>
 
     <body id="page-top">
         <header id="header" class="header">
-            @include('partials.erp.topmenu')
+            @include('partials._topmenu')
         </header>
 
         <section id="wrapper">
-            @include('partials.erp.sidebar')
+            @include('partials._sidebar')
             @yield('content')
         </section>
 
-        @include('partials.scriptscomun')
-        @include('partials.erp.scripts')
+        @include('partials._scriptscomun')
+        @include('partials._scripts')
         @yield('scriptsextra')
     </body>
 </html>

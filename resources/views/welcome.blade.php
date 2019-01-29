@@ -79,12 +79,12 @@
 @if(App::getLocale()=='es')
     @section('title','Suma - Bienvenido')
     @section('content')
-        @include('partials.suma.es.ppalEs')    
+        @include('suma.es.ppalEs')    
     @endsection
 @else
     @section('title','Suma - Welcome')
     @section('content')
-        @include('partials.suma.en.ppalEn')    
+        @include('suma.en.ppalEn')    
     @endsection
 @endif
 

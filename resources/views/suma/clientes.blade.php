@@ -4,12 +4,12 @@
 @if(App::getLocale()=='es')
     @section('title','Suma - Clientes ')
     @section('content')
-        @include('partials.suma.es.clientesEs')    
+        @include('suma.es.clientesEs')    
     @endsection
 @else
     @section('title','Suma - Customers ')
     @section('content')
-        @include('partials.suma.en.clientesEn')    
+        @include('suma.en.clientesEn')    
     @endsection
 @endif
 

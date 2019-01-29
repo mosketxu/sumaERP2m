@@ -5,11 +5,11 @@
 @if(App::getLocale()=='es')
     @section('title','Suma - Equipo')
     @section('content')
-        @include('partials.suma.es.equipoEs')    
+        @include('suma.es.equipoEs')    
     @endsection
 @else
     @section('title','Suma - Team')
     @section('content')
-        @include('partials.suma.en.equipoEn')    
+        @include('suma.en.equipoEn')    
     @endsection
 @endif

@@ -2,12 +2,12 @@
 <html lang="es">
 
 <head>
-    @include('partials.suma.head')
+    @include('suma._head')
 </head>
 
 <body data-spy="scroll" data-target="#main-nav" id="home">
     <header>
-        @include('partials.suma.menu')
+        @include('suma._menu')
     </header>
     @yield('carrusel')
     @yield('content')
@@ -17,9 +17,9 @@
 <!-- FOOTER -->
 
 <footer id="main-footer" class=@yield('piefijo')>
-    @include('partials.suma.footer')
+    @include('suma._footer')
 </footer>
 
-{{-- @include('partials.suma.scripts') --}}
-@include('partials.scriptscomun')
+
+@include('partials._scriptscomun')
 @yield('scriptsextra')
