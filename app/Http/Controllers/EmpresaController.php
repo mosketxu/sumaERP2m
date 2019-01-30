@@ -24,11 +24,11 @@ class EmpresaController extends Controller
             ->paginate(25);
 
         if (auth()->user()->role_id == '1') {
-            return view('partials.erp.empresas.empresas', compact('empresas', 'user'));
+            return view('erp.empresas.empresas', compact('empresas', 'user'));
         } elseif (auth()->user()->role_id == '2') {
-            return view('partials.erp.suma', compact('empresas', 'user'));
+            return view('erp.suma', compact('empresas', 'user'));
         }
-        return view('partials.erp.cliente', compact('empresas', 'user'));
+        return view('erp.cliente', compact('empresas', 'user'));
     }
 
 
@@ -80,7 +80,7 @@ class EmpresaController extends Controller
                     ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
             }
         ])->whereSlug($slug)->first();
-        return view('partials.erp.empresas.empresa', compact('empresa', 'user'));
+        return view('erp.empresas.empresa', compact('empresa', 'user'));
     }
 
     /**
