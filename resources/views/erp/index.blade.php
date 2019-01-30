@@ -2,7 +2,7 @@
 		<html lang="en">
 		<head>
 			<meta charset="UTF-8">
-			<title>Listado de Empresas</title>
+			<title>Listado de Empresass</title>
 		</head>
 	<body>
 			<table>

@@ -5,7 +5,7 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#">Empresas</a>
+                <a href="{{route('empresas.index') }}">Empresas</a>
             </li>
             <li class="breadcrumb-item active">{{$empresa->slug}}</li>
         </ol>

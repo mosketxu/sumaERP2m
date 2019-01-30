@@ -10,31 +10,46 @@ use Illuminate\Support\Facades\Auth;
 
 class EmpresaController extends Controller
 {
+    
+    // Método principal: Muestro todas las empresas y las operaciones que puedo hacer con ellas
     public function index()
     {
         $user = Auth::user();
-        $empresas = DB::table('empresas')
-            ->join('bancos', 'empresas.id', '=', 'bancos.empresa_id')
-            ->join('banks', 'banks.id', '=', 'bancos.bank_id')
-            ->join('condicion_facturacions', 'empresas.id', '=', 'condicion_facturacions.empresa_id')
-            ->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-            ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id')
-            ->join('tipo_empresas', 'tipo_empresas.id', '=', 'empresas.tipoempresa_id')
-            ->orderBy('empresas.name')
-            ->paginate(25);
+        $empresas = Empresa::with([
+            'tipoempresa',
+            'bancos' => function ($q) {
+                $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                    ->where('principal', '=', '1');
+            },
+            'condFacturacions' => function ($q) {
+                $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
+            }
+        ])->orderBy('name', 'asc')
+            ->paginate(10);
 
         if (auth()->user()->role_id == '1') {
-            return view('erp.empresas.empresas', compact('empresas', 'user'));
+            return view('erp.empresas.index', compact('empresas', 'user'));
+
         } elseif (auth()->user()->role_id == '2') {
             return view('erp.suma', compact('empresas', 'user'));
         }
         return view('erp.cliente', compact('empresas', 'user'));
     }
 
+    // Llamo al formulario donde voy a crear el registro
+    public function create()
+    {
+        $user = Auth::user();
+        $empresas = Empresa::all();
+        return view('erp.empresas.create', compact('empresas', 'user'));
+    }
+
+    // Metodo donde recibo los datos del formulario Create y los guardo en la BBDD
 
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+        // if (!$request->ajax()) return redirect('/');
 
         $empresa = new Empresa();
 
@@ -57,15 +72,10 @@ class EmpresaController extends Controller
 
         $empresa->save();;
 
-        // return redirect('erp/empresas')->with('message', 'Guardado Satisfactoriamente !');
+        return redirect('erp/empresas')->with('message', 'Guardado Satisfactoriamente !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Con este método llamo al formulario donde voy a MOSTRAR el registro
     public function show($slug)
     {
         $user = Auth::user();
@@ -80,19 +90,31 @@ class EmpresaController extends Controller
                     ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
             }
         ])->whereSlug($slug)->first();
-        return view('erp.empresas.empresa', compact('empresa', 'user'));
+        return view('erp.empresas.show', compact('empresa', 'user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Con este método llamo al formulario donde voy a editar el registro
+    public function edit($slug)
+    {
+        $user = Auth::user();
+        $empresa = Empresa::with([
+            'tipoempresa',
+            'bancos' => function ($q) {
+                $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                    ->where('principal', '=', '1');
+            },
+            'condFacturacions' => function ($q) {
+                $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
+            }
+        ])->whereSlug($slug)->first();
+        return view('erp.empresas.edit', compact('empresa', 'user'));
+    }
+
+    // Recupero los datos EDITADOS y los actualizo
     public function update(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+        // if (!$request->ajax()) return redirect('/');
         $empresa = Empresa::findOrFail($request->id);
 
         $empresa->name = $request->name;
@@ -113,71 +135,21 @@ class EmpresaController extends Controller
         $empresa->estado = $request->estado;
 
         $empresa->save();;
+
+        Session::flash('message', 'Editado Satisfactoriamente !');
+        return Redirect::to('erp.empresas');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($slug)
+    // Elimino el registro
+    public function destroy($id)
     {
-        Empresa::findOrFail($slug)->delete();
-        return redirect()->back();
-    }
-
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $output = "";
-            $empresas = DB::table('empresas')
-                ->join('bancos', 'empresas.id', '=', 'bancos.empresa_id')
-                ->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                ->join('condicion_facturacions', 'empresas.id', '=', 'condicion_facturacions.empresa_id')
-                ->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id')
-                ->join('tipo_empresas', 'tipo_empresas.id', '=', 'empresas.tipoempresa_id')
-                ->where('empresas.name', 'LIKE', '%' . $request->search . "%")
-                ->orWhere('bancos.iban', 'LIKE', '%' . $request->search . "%")
-                ->orWhere('empresas.cifnif', 'LIKE', '%' . $request->search . "%")
-                ->get();
-            $total_row = $empresas->count();
-
-            if ($empresas) {
-                foreach ($empresas as $key => $empresa) {
-                    if ($empresa->estado == 1) {
-                        $est = '<i class="fa fa-check "></i>';
-                    } else {
-                        $est = '<i class="far fa-times-circle text-danger"></i>';
-                    }
-                    $output .=
-                        '<tr>' .
-                        '<td>' . $empresa->name . '</td>' .
-                        '<td>' . $empresa->tipempr3 . '</td>' .
-                        '<td>' . $empresa->cifnif . '</td>' .
-                        '<td>' . $empresa->cuentacontable . '</td> ' .
-                        '<td>' . substr($empresa->bank, 0, 5) . '</td>' .
-                        '<td>' . $empresa->iban . '</td>' .
-                        '<td>' . substr($empresa->periodopago, 0, 5) . '</td>' .
-                        '<td>' . substr($empresa->formapago, 0, 5) . '</td>' .
-                        '<td>' . $empresa->diavencimiento . '</td>' .
-                        '<td>' . $est . '</td>' .
-                        '<td>' .
-                        '<a href=' . route("empresas.show", $empresa->slug) . '><i class="far fa-eye text-success"></i></a>' .
-                        '<a href=' . route("empresas.edit", $empresa->slug) . '><i class="far fa-edit text-primary"></i></a>' .
-                        '<a href=' . route("empresas.destroy", $empresa->slug) . '><i class="far fa-trash-alt text-danger"></i></a>' .
-                        '</td>' .
-                        '</tr>';
-                }
-            } else {
-                $output .=
-                    '<tr>' .
-                    '<td colspam="10">No hay datos</td>' .
-                    '</tr>';
-            }
-            return Response($output);
+        $user = Auth::user();
+        $empresa = Empresa::findorFail($id);
+        if ($user->can('delete', $empresa)) {
+            Empresa::findOrFail($id)->delete();
+            return redirect()->route('empresas.index')->with('status', 'Empresa ' . $empresa->name . ' eliminada!');;
+        } else {
+            echo 'Not Authorized.';
         }
     }
-
 }

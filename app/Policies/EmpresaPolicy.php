@@ -55,7 +55,7 @@ class EmpresaPolicy
      */
     public function delete(User $user, Empresa $empresa)
     {
-        return $user->id > 0;
+        return $user->role_id === 1;
     }
 
     /**
