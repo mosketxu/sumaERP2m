@@ -24,12 +24,14 @@
                             </div>
                         @endcan
                         <div class="col-auto">
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-search fa-sm text-primary"></i></span>
+                            <form method="GET" action="{{route('empresas.index') }}">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-search fa-sm text-primary"></i></span>
+                                    </div>
+                                    <input id="busca" name="busca"  type="text" class="form-control" name="search" value='{{$busqueda}}' placeholder="Search for..."/>
                                 </div>
-                                <input id="search"  type="text" class="form-control" name="search" placeholder="Search for..."/>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -40,11 +42,6 @@
                 </div>
             @endif
             <div class="card-body">
-                {!! Form::open(['route'=>'erp.empresas.index','method'=>'GET','class'=>'navbar-form pull-right'])!!}
-                <div class="form-group">
-                    {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Buscar empresa']) !!}
-                </div>
-                {!! Form::open()!!}
                 <div class="table-responsive">
                     <table id="tabla_empresas" class="table table-hover table-sm small" cellspacing="0" width=100%>
                         <thead>

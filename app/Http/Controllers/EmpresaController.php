@@ -12,20 +12,26 @@ class EmpresaController extends Controller
 {
     
     // Método principal: Muestro todas las empresas y las operaciones que puedo hacer con ellas
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $empresas = Empresa::with([
-            'tipoempresa',
-            'bancos' => function ($q) {
-                $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                    ->where('principal', '=', '1');
-            },
-            'condFacturacions' => function ($q) {
-                $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
-            }
-        ])->orderBy('name', 'asc')
+        if ($request->busca) {
+            $busqueda = $request->busca;
+        } else {
+            $busqueda = '';
+        }
+        $empresas = Empresa::search($request->busca)
+            ->with([
+                'tipoempresa',
+                'bancos' => function ($q) {
+                    $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                        ->where('principal', '=', '1');
+                },
+                'condFacturacions' => function ($q) {
+                    $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                        ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
+                }
+            ])->orderBy('name', 'asc')
             ->paginate(10);
 
 
@@ -38,7 +44,7 @@ class EmpresaController extends Controller
 
 
         if (auth()->user()->role_id == '1') {
-            return view('erp.empresas.index', compact('empresas', 'user'));
+            return view('erp.empresas.index', compact('empresas', 'user', 'busqueda'));
 
         } elseif (auth()->user()->role_id == '2') {
             return view('erp.suma', compact('empresas', 'user'));

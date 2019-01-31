@@ -71,6 +71,11 @@ class Empresa extends Model
     });
   }
 
+  public function scopeSearch($query, $busca)
+  {
+    return $query->where('name', 'LIKE', "%$busca%")->orWhere('cifnif', 'LIKE', "%$busca%");
+  }
+
   public function tipoempresa()
   {
     return $this->belongsTo(TipoEmpresa::class);
