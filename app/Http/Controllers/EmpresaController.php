@@ -28,6 +28,15 @@ class EmpresaController extends Controller
         ])->orderBy('name', 'asc')
             ->paginate(10);
 
+
+        // $empresas = Empresa::orderBy('name', 'asc')->paginate(10);
+        // $empresas->each(function ($empresas) {
+        //     $empresas->tipoempresa;
+        //     $empresas->bancos;
+        //     $empresas->condFacturacions;
+        // });
+
+
         if (auth()->user()->role_id == '1') {
             return view('erp.empresas.index', compact('empresas', 'user'));
 
@@ -108,6 +117,7 @@ class EmpresaController extends Controller
                     ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
             }
         ])->whereSlug($slug)->first();
+
         return view('erp.empresas.edit', compact('empresa', 'user'));
     }
 

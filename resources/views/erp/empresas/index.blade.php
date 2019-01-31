@@ -40,6 +40,11 @@
                 </div>
             @endif
             <div class="card-body">
+                {!! Form::open(['route'=>'erp.empresas.index','method'=>'GET','class'=>'navbar-form pull-right'])!!}
+                <div class="form-group">
+                    {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Buscar empresa']) !!}
+                </div>
+                {!! Form::open()!!}
                 <div class="table-responsive">
                     <table id="tabla_empresas" class="table table-hover table-sm small" cellspacing="0" width=100%>
                         <thead>
@@ -63,7 +68,7 @@
                             <tr>
                                 <td>{{$empresa->id}}</td>
                                 <td>{{$empresa->name}}</td>
-                                <td>{{$empresa->tipempr3}}</td>
+                                <td>{{$empresa->tipoempresa->tipempr3}}</td>
                                 <td>{{$empresa->cifnif}}</td>
                                 <td>{{$empresa->cuentacontable}}</td> 
                                 @foreach ($empresa->bancos as $banco)
