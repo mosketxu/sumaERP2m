@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App \{
-    User, Role
+    User, Role, Empresa
 };
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -57,8 +57,9 @@ class UserController extends Controller
         $user = Auth::user();
         $userEdit = User::find($id);
         $roles = Role::all();
+        $empresas = Empresa::all();
 
-        return view('erp.users.edit', compact('user', 'userEdit', 'roles'));
+        return view('erp.users.edit', compact('user', 'userEdit', 'roles', 'empresas'));
     }
 
     public function update(Request $request, $id)

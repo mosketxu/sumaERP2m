@@ -1,31 +1,25 @@
 @extends('layouts.erp')
 
+@section('title','Crear Usuario')
+
 @section('content')
     <div id="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('user.index')}}">Usuarios</a>
+                    <a href="{{ route('user.index')}}">@yield('title')</a>
                 </li>
-                <li class="breadcrumb-item active">Nuevo Usuario</li>
+                <li class="breadcrumb-item active">@yield('title')</li>
             </ol>
 
             <div class="card mb-3">
                 <div class="card-header text-primary">
                     <i class="fas fa-user-plus"></i>
-                     Nuevo Usuario
+                     @yield('title')
                 </div>
                 <div class="card-body">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                        </ul>
-                    </div><br />
-                    @endif
+                    @include('partials._errores')
                     <form method="post" action="{{ route('user.store') }}">
                         <div class="row">
                             <div class="input-group input-group-sm mb-3 col-sm-6">
@@ -60,7 +54,19 @@
                                     @endforeach
                                 </select>
                             </div>
-
+                        </div>
+                        <div class="row">
+                            <div class="input-group input-group-sm mb-3 col">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-pencil-ruler text-primary"></i></span>
+                                </div>
+                                <select class="custom-select custom-select-sm multiple" name="userroleId">
+                                    <option selected>Selecciona las empresas...</option>
+                                    {{-- @foreach ($empresas as $empresa )
+                                        <option value="{{$empresa->id}}">{{$empresa->name}}</option>                                
+                                    @endforeach --}}
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="input-group input-group-sm mb-3 col-sm-6">
@@ -84,3 +90,4 @@
         </div>
     </div>
 @endsection
+

@@ -4,6 +4,7 @@
 
     <!-- Core plugin JavaScript-->
     <script src="{{asset('/js/jquery.easing.min.js')}}"></script>
+    <script src="{{asset('plugin/chosen/chosen.jquery.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('/js/sb-admin.min.js')}}"></script>
