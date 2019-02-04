@@ -81,6 +81,11 @@ class Empresa extends Model
     return $this->belongsTo(TipoEmpresa::class);
   }
 
+  public function userempresa()
+  {
+    return $this->hasMany(UserEmpresa::class);
+  }
+
   public function bancos()
   {
     return $this->hasMany(Banco::class);

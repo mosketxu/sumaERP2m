@@ -41,7 +41,7 @@
     <!-- PREPARADO SECTION -->
     <section id="preparado" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-6 align-self-center">
                     <h3 class="display-6"> More than just services</h3>
                     <p> Suma Apoyo Empresarial is a company that was born with the aim of being more than just an accounting consultancy
@@ -51,7 +51,7 @@
                         Thus, we can offer solutions to our clients in all those needs that arise.
                     </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{asset('storage/img/masqueunservicio.jpg')}}" alt="Reunion" class="img-fluid rounded-circle">
                     </div>
@@ -75,13 +75,13 @@
     <!-- QUE OFRECEMOS SECTION -->
     <section id="queofrecemos-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/clips.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 align-self-center">
                     <h3 class="display-6 text-center">We specialize in multiple areas</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -167,13 +167,13 @@
     <!-- FINANCIERA SECTION -->
     <section id="financiera-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-2">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center order-2">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/ajedrez.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 order-1">
+                <div class="col-md-6 align-self-center order-1">
                     <h3 class="display-6 text-center">Information to decide</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -243,13 +243,13 @@
     <!-- CONTABLE SECTION -->
     <section id="contable-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/agenda.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 align-self-center">
                     <h3 class="display-6 text-center">A management tool</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -336,13 +336,13 @@
     <!-- FISCAL SECTION -->
     <section id="fiscal-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-2">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center order-2">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/finance.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 order-1">
+                <div class="col-md-6 align-self-center order-1">
                     <h3 class="display-6 text-center">Secure and timely taxation.</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -419,15 +419,15 @@
     <!-- MERCANTIL SECTION -->
     <section id="mercantil-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/portatilperiodico.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mt-4 mb-2">
+                <div class="col-md-6 align-self-center mb-2">
                     <h3 class="display-7 text-center">We help fulfill the legal obligations of your Company with the corresponding Commercial Registry:</h3>
-                    <div class="d-flex mt-5">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg "></i>
                         </div>
@@ -435,7 +435,7 @@
                             Legalization of Official Books.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -443,7 +443,7 @@
                             Preparation and submission of financial statements.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -471,13 +471,13 @@
     <!-- ADMINISTRACION SECTION -->
     <section id="administracion-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-2">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center order-2">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/administracion.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 order-1">
+                <div class="col-md-6 align-self-center order-1">
                     <h3 class="display-6 text-center">Execution of administrative tasks.</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -554,15 +554,15 @@
     <!-- CONSULTORIA SECTION -->
     <section id="consultoria-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/consultoria.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mt-4 mb-2">
-                    <h3 class="display-7 text-center">We help you improve your processes...</h3>
-                    <div class="d-flex mt-2">
+                <div class="col-md-6 align-self-center">
+                    <h3 class="display-6 text-center">We help you improve your processes...</h3>
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -570,7 +570,7 @@
                             Definition of administrative and accounting systems and circuits for first-time processes.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -578,7 +578,7 @@
                             We accompany you in the digital transformation of your company.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -586,7 +586,7 @@
                             Development of Web tools and applications.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -594,7 +594,7 @@
                             Analysis and optimization of administrative and accounting systems and circuits.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -602,7 +602,7 @@
                             Analysis of basic wage systems (wages in kind).
                         </div>
                     </div>
-                    <h3 class="display-7 text-center">and HR</h3>
+                    <h3 class="display-6 text-center">and HR</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg "></i>

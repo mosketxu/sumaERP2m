@@ -41,9 +41,9 @@
     <!-- PREPARADO SECTION -->
     <section id="preparado" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-6 align-self-center">
-                    <h3 class="display-6"> Más que un servicio</h3>
+                    <h3 class="display-6 "> Más que un servicio</h3>
                     <p> Suma Apoyo Empresarial es una empresa que nace con el objetivo de ser algo más que una asesoria contable
                         y fiscal.</p>
                     <p> Queremos acompañar a nuestros clientes con un seguimiento personalizado, conociendo sus negocio y haciendo
@@ -52,7 +52,7 @@
                         Así, podemos ofrecer soluciones a nuestros clientes en todas aquellas necesidades que le surjan.
                     </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{asset('storage/img/masqueunservicio.jpg')}}" alt="Reunion" class="img-fluid rounded-circle">
                     </div>
@@ -76,13 +76,13 @@
     <!-- QUE OFRECEMOS SECTION -->
     <section id="queofrecemos-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/clips.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 align-self-center">
                     <h3 class="display-6 text-center">Especialistas en diversas áreas</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -168,13 +168,13 @@
     <!-- FINANCIERA SECTION -->
     <section id="financiera-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-2">
+            <div class="row align-items-center">
+                <div class="col-md-6  align-self-center order-2">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/ajedrez.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 order-1">
+                <div class="col-md-6 align-self-center order-1">
                     <h3 class="display-6 text-center">Información para decidir</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -251,13 +251,13 @@
     <!-- CONTABLE SECTION -->
     <section id="contable-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/agenda.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 align-self-center">
                     <h3 class="display-6 text-center">Una herramienta de gestión.</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -343,13 +343,13 @@
     <!-- FISCAL SECTION -->
     <section id="fiscal-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-2">
+            <div class="row align-items-center">
+                <div class="col-md-6  align-self-center order-2">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/finance.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 order-1">
+                <div class="col-md-6 align-self-center order-1">
                     <h3 class="display-6 text-center">Fiscalidad segura y a tiempo.</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -426,15 +426,15 @@
     <!-- MERCANTIL SECTION -->
     <section id="mercantil-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/portatilperiodico.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mt-4 mb-2">
+                <div class="col-md-6 align-self-center">
                     <h3 class="display-7 text-center">Cumplimiento de las obligaciones legales ante el Registro Mercantil correspondiente.</h3>
-                    <div class="d-flex mt-5">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg "></i>
                         </div>
@@ -442,7 +442,7 @@
                             Legalización de libros oficiales.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -450,7 +450,7 @@
                             Confección y presentación de Cuentas Anuales.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -478,13 +478,13 @@
     <!-- ADMINISTRACION SECTION -->
     <section id="administracion-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 order-2">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center order-2">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/administracion.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 order-1">
+                <div class="col-md-6 align-self-center order-1">
                     <h3 class="display-6 text-center">Ejecución de tareas administrativas.</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
@@ -561,15 +561,15 @@
     <!-- CONSULTORIA SECTION -->
     <section id="consultoria-section" class="p-3 bloqueSeccion">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row align-items-center">
+                <div class="col-md-6 align-self-center">
                     <div class="align-items-center">
                         <img src="{{ asset('storage/img/consultoria.jpg') }}" alt="clip" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <div class="col-md-6 mt-4 mb-2">
-                    <h3 class="display-7 text-center">Te ayudamos a mejorar tus procesos...</h3>
-                    <div class="d-flex mt-2">
+                <div class="col-md-6 align-self-center mb-2">
+                    <h3 class="display-6 text-center">Te ayudamos a mejorar tus procesos...</h3>
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -577,7 +577,7 @@
                             Definición de sistemas y circuitos administrativos y contables para procesos que se inician.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -585,7 +585,7 @@
                             Te acompañamos en la transformación digital de tu empresa.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -593,7 +593,7 @@
                             Desarrollo de herramientas y aplicaciones web.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -601,7 +601,7 @@
                             Análisis y optimización de sistemas y circuitos administrativos y contables.
                         </div>
                     </div>
-                    <div class="d-flex mt-2">
+                    <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg  "></i>
                         </div>
@@ -609,7 +609,7 @@
                             Análisis de sistemas retributivos básicos (remuneraciones en especie).
                         </div>
                     </div>
-                    <h3 class="display-7 text-center">y RRHH</h3>
+                    <h3 class="display-6 text-center">y RRHH</h3>
                     <div class="d-flex">
                         <div class="align-self-center pr-4 pb-2">
                             <i class="fas fa-paperclip fa-lg "></i>

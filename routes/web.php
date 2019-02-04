@@ -20,6 +20,8 @@ Auth::routes([
 ]);
 // Auth::routes();
 
+Route::resource('genero', 'GeneroController');
+
 
 Route::get('/', 'SumaController@index')->name('home');
 Route::get('/servicios', 'SumaController@servicios')->name('suma.servicios');

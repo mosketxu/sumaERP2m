@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App \{
-    User, Role, Empresa
+    User, Role, Empresa, UserEmpresa
 };
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -57,9 +58,17 @@ class UserController extends Controller
         $user = Auth::user();
         $userEdit = User::find($id);
         $roles = Role::all();
-        $empresas = Empresa::all();
 
-        return view('erp.users.edit', compact('user', 'userEdit', 'roles', 'empresas'));
+        $empresasDisponibles = Empresa::whereNotIn('id', function ($query) use ($id) {
+            $query->select('empresa_id')->from('user_empresas')->where('user_id', '=', $id);
+        })
+            ->get();
+        $empresasAsociadas = Empresa::whereIn('id', function ($query) use ($id) {
+            $query->select('empresa_id')->from('user_empresas')->where('user_id', '=', $id);
+        })
+            ->get();
+
+        return view('erp.users.edit', compact('user', 'userEdit', 'roles', 'empresasDisponibles', 'empresasAsociadas'));
     }
 
     public function update(Request $request, $id)
