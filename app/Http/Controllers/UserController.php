@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
-        $user = Auth::user();
         $usuarios = User::with([
             'role',
         ])->get();
-        return view('erp.users.index', compact('usuarios', 'user'));
+        return view('erp.users.index', compact('usuarios'));
     }
 
     public function create()
@@ -55,7 +58,6 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = Auth::user();
         $userEdit = User::find($id);
         $roles = Role::all();
 

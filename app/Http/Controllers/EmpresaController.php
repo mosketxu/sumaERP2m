@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class EmpresaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     // Método principal: Muestro todas las empresas y las operaciones que puedo hacer con ellas
     public function index(Request $request)
     {
-        $user = Auth::user();
         if ($request->busca) {
             $busqueda = $request->busca;
         } else {
@@ -44,20 +47,19 @@ class EmpresaController extends Controller
 
 
         if (auth()->user()->role_id == '1') {
-            return view('erp.empresas.index', compact('empresas', 'user', 'busqueda'));
+            return view('erp.empresas.index', compact('empresas', 'busqueda'));
 
         } elseif (auth()->user()->role_id == '2') {
-            return view('erp.suma', compact('empresas', 'user'));
+            return view('erp.suma', compact('empresas'));
         }
-        return view('erp.cliente', compact('empresas', 'user'));
+        return view('erp.cliente', compact('empresas'));
     }
 
     // Llamo al formulario donde voy a crear el registro
     public function create()
     {
-        $user = Auth::user();
         $empresas = Empresa::all();
-        return view('erp.empresas.create', compact('empresas', 'user'));
+        return view('erp.empresas.create', compact('empresas'));
     }
 
     // Metodo donde recibo los datos del formulario Create y los guardo en la BBDD
@@ -93,7 +95,6 @@ class EmpresaController extends Controller
     // Con este método llamo al formulario donde voy a MOSTRAR el registro
     public function show($slug)
     {
-        $user = Auth::user();
         $empresa = Empresa::with([
             'tipoempresa',
             'bancos' => function ($q) {
@@ -105,13 +106,12 @@ class EmpresaController extends Controller
                     ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
             }
         ])->whereSlug($slug)->first();
-        return view('erp.empresas.show', compact('empresa', 'user'));
+        return view('erp.empresas.show', compact('empresa'));
     }
 
     // Con este método llamo al formulario donde voy a editar el registro
     public function edit($slug)
     {
-        $user = Auth::user();
         $empresa = Empresa::with([
             'tipoempresa',
             'bancos' => function ($q) {
@@ -124,7 +124,7 @@ class EmpresaController extends Controller
             }
         ])->whereSlug($slug)->first();
 
-        return view('erp.empresas.edit', compact('empresa', 'user'));
+        return view('erp.empresas.edit', compact('empresa'));
     }
 
     // Recupero los datos EDITADOS y los actualizo
