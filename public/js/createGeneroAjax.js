@@ -1,6 +1,6 @@
 $("#registro").click(function() {
     var dato = $("#genre").val();
-    var route = "https://sumaerp2m.dev/genero";
+    var route = "https://sumaerp2m.dev/erp/genero";
     var token = $("#token").val();
 
     $.ajax({
@@ -11,6 +11,13 @@ $("#registro").click(function() {
         data: { genre: dato },
         success: function() {
             $("#msj-success").fadeIn();
-        }
+        },
+        error: function(xhr,err){ 
+            alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status); 
+            alert("responseText: "+xhr.responseText); 
+        },
+        // error: function(result) {
+        //     $("#msj-error").fadeIn();
+        // }
     });
 });

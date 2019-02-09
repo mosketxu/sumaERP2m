@@ -20,7 +20,6 @@ Auth::routes([
 ]);
 // Auth::routes();
 
-Route::resource('genero', 'GeneroController');
 
 
 Route::get('/', 'SumaController@index')->name('home');
@@ -46,4 +45,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     Route::resource('user', 'UserController');
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('profile', 'UserController@update_avatar')->name('user.updateavatar');
+
+    Route::resource('genero', 'GeneroController');
+
 });

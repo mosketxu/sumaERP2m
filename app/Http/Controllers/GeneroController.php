@@ -11,6 +11,11 @@ use App \{
 
 class GeneroController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,14 +33,7 @@ class GeneroController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $roles = Role::all();
-
-
-        return view('genero.create', compact(
-            'user',
-            'roles'
-        ));
+        return view('genero.create');
     }
 
     /**
@@ -49,7 +47,8 @@ class GeneroController extends Controller
         if ($request->ajax()) {
             Genre::create($request->all());
             return response()->json([
-                "mensaje" => "creado"
+                "mensaje" => $request->all(),
+                // "mensaje" => "creado"
             ]);
         }
     }
