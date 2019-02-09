@@ -16,6 +16,7 @@ class GeneroController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
      * Display a listing of the resource.
      *
@@ -115,6 +116,11 @@ class GeneroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $genre->delete($id);
+        Genre::findOrFail($id)->delete();
+        return response()->json([
+                "mensaje"=>"borrado"
+            ]
+        ); 
     }
 }
