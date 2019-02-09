@@ -47,5 +47,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     Route::post('profile', 'UserController@update_avatar')->name('user.updateavatar');
 
     Route::resource('genero', 'GeneroController');
+    Route::get('generos', 'GeneroController@listing');
 
 });

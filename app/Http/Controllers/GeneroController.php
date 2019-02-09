@@ -21,11 +21,22 @@ class GeneroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function listing()
     {
-        //
+        $genres = Genre::all();
+
+        return response()->json(
+            $genres->toArray()
+        );
     }
 
+    public function index()
+    {
+        return view('genero.index');
+    }
+
+
+    
     /**
      * Show the form for creating a new resource.
      *
