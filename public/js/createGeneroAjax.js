@@ -1,6 +1,9 @@
 $("#registro").click(function() {
     var dato = $("#genre").val();
-    var route = "https://sumaerp2m.dev/erp/genero";
+    // var route = "https://sumaerp2m.dev/erp/genero";
+    // var route = "http://127.0.0.1:8000/erp/genero";
+    var route = "/erp/genero";
+    
     var token = $("#token").val();
 
     $.ajax({
