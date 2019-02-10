@@ -69,6 +69,9 @@ $("#actualizar").click(function(){
             $("#genre").val("");
             $("#myModal").modal('toggle');
             $("#msj-success").fadeIn();
+        },
+        error:function(msj){
+            console.log(msj);
         }
     });
 });

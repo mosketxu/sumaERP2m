@@ -7,9 +7,11 @@
         <div class="alert alert-success alert-dissmisible" id="msj-success" role="alert" style="display:none">
             <strong>Todo OK</strong>
         </div>
-        <div class="alert alert-danger alert-dissmisible" id="msj-error" role="alert" style="display:none">
-            <strong>{{http_response_code()}}</strong>
+        <div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+                <strong id="msj"> </strong>
         </div>
+
+
         <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
         @include('genero.form.genero')
         <a href="#" class="btn btn-primary" id="registro">Registrar</a>

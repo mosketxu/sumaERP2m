@@ -15,12 +15,10 @@ $("#registro").click(function() {
         success: function() {
             $("#msj-success").fadeIn();
         },
-        error: function(xhr,err){ 
-            alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status); 
-            alert("responseText: "+xhr.responseText); 
-        },
-        // error: function(result) {
-        //     $("#msj-error").fadeIn();
-        // }
+        error: function(msj){ 
+            console.log(msj.responseJSON.errors.genre);
+            $("#msj").html(msj.responseJSON.errors.genre);
+            $("#msj-error").fadeIn();
+        }
     });
 });

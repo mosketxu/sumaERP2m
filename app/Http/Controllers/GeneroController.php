@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App \{
     User, Role, Genre
 };
+use App\Http\Requests\GeneroRequest;
 
 
 class GeneroController extends Controller
@@ -54,7 +55,7 @@ class GeneroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GeneroRequest $request)
     {
         if ($request->ajax()) {
             Genre::create($request->all());
