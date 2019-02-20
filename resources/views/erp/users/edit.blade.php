@@ -21,11 +21,11 @@
                 <div class="card-body">
                     <div class="row">
                         {{-- avatar --}}
-                        <div class="col-sm-1">
+                        {{-- <div class="col-sm-1">
                             <div class="justify-content-center">
                                 <img class="img-thumbnail rounded-circle" src="{{asset('storage/img/avatar/'.$userEdit->avatar)}}" />
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- Detalles Usuario --}}
                         <div class="col-sm-4">
                             <div class="card">
@@ -38,15 +38,18 @@
                                         @method('PATCH')
                                         @csrf
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-3">
+                                                <div class="justify-content-center">
+                                                    <img class="img-thumbnail rounded-circle" src="{{asset('storage/img/avatar/'.$userEdit->avatar)}}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
                                                 <div class="input-group input-group-sm mb-3">
                                                     <div class="input-group-prepend" title="Nombre">
                                                         <span class="input-group-text" ><i class="fas fa-user text-primary"></i></span>
                                                     </div>
                                                     <input type="text" class="form-control" name="username" id="usuario" value="{{ old('username',$userEdit->name) }}" title="Nombre" placeholder="Nombre" />
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
                                                 <div class="input-group input-group-sm mb-3">
                                                     <div class="input-group-prepend" title="Apellidos">
                                                         <span class="input-group-text"><i class="fas fa-user-tag text-primary"></i></span>
@@ -103,7 +106,7 @@
                             </div>
                         </div>
                         {{-- Empresas Asociadas --}}
-                        <div class="col-sm-7">
+                        <div class="col-sm-8">
                             <div class="card">
                                 <div class="card-header">
                                     Empresas
@@ -146,7 +149,7 @@
                                                 <table class="table table-hover table-sm small" id="tablaDisponibles"cellspacing="0" width=100%>
                                                     <thead>
                                                         <tr>
-                                                            <th>Empresa</th>
+                                                            <th>Disponibles</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -172,9 +175,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-footer">
-                                    pie empresas
                                 </div>
                             </div>
                         </div>
