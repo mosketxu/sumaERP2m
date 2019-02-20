@@ -29,7 +29,6 @@ Route::get('/clientes', 'SumaController@clientes')->name('suma.clientes');
 Route::get('/contacto', 'SumaController@contacto')->name('suma.contacto');
 Route::get('/politica', 'SumaController@politica')->name('suma.politica');
 
-
 Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     Route::get('/', 'ErpController@index')->name('erp.index');
 
@@ -46,6 +45,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('profile', 'UserController@update_avatar')->name('user.updateavatar');
 
+    Route::group(['prefix' => 'userEmpresa'], function () {
+        Route::get('/empAsoc/{userid}', 'UserEmpresaController@empAsoc');
+        Route::get('/empDisp/{userid}', 'UserEmpresaController@empDisp');
+        Route::post('/asoc/{userid}/{empid}', 'UserEmpresaController@store');
+        Route::delete('disp/{userid}/{userempid}', 'UserEmpresaController@destroy');
+    });
+    
     Route::resource('genero', 'GeneroController');
     Route::get('generos', 'GeneroController@listing');
 

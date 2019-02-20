@@ -20,15 +20,18 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        {{-- avatar --}}
                         <div class="col-sm-1">
                             <div class="justify-content-center">
                                 <img class="img-thumbnail rounded-circle" src="{{asset('storage/img/avatar/'.$userEdit->avatar)}}" />
                             </div>
                         </div>
+                        {{-- Detalles Usuario --}}
                         <div class="col-sm-4">
                             <div class="card">
                                 <div class="card-header">
-                                    Detalles del usuario
+                                    Detalles del usuario:
+                                    <span id="userid" class="d-none">{{ $userEdit->id }}</span>
                                 </div>
                                 <form method="post" action="{{ route('user.update',$userEdit->id) }}">
                                     <div class="card-body">
@@ -40,7 +43,7 @@
                                                     <div class="input-group-prepend" title="Nombre">
                                                         <span class="input-group-text" ><i class="fas fa-user text-primary"></i></span>
                                                     </div>
-                                                    <input type="text" class="form-control" name="username" value="{{ old('username',$userEdit->name) }}" title="Nombre" placeholder="Nombre" />
+                                                    <input type="text" class="form-control" name="username" id="usuario" value="{{ old('username',$userEdit->name) }}" title="Nombre" placeholder="Nombre" />
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -99,6 +102,7 @@
                                 </form>
                             </div>
                         </div>
+                        {{-- Empresas Asociadas --}}
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
@@ -109,22 +113,31 @@
                                         {{-- Empresas Asociadas --}}
                                         <div class="col-sm-6">
                                             <div class="table-responsive">
-                                                <table class="table table-hover table-sm small" cellspacing="0" width=100%>
+                                                <table class="table table-hover table-sm small" id="tablaAsociadas"cellspacing="0" width=100%>
                                                     <thead>
                                                         <tr>
                                                             <th>Asociadas</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="text-muted buscar">
-                                                    @forelse ($empresasAsociadas as $useremp)
-                                                        <tr>
-                                                            <td><a href="#" title="Disable"> {{$useremp->name}}</a></td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td>No tiene empresas asociadas</td>
-                                                        </tr>
-                                                    @endforelse
+                                                    <tbody id="tEmpAsoc"class="text-muted buscar">
+                                                        <form method="POST" action="">
+                                                            <div class="alert alert-success alert-dissmisible" id="msj-success" role="alert" style="display:none">
+                                                                <strong>Todo OK</strong>
+                                                            </div>
+                                                            <div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
+                                                                <strong id="msj"> </strong> 
+                                                            </div>
+                                                            <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
+                                                            {{-- @forelse ($empresasAsociadas as $useremp)
+                                                                <tr>
+                                                                    <td><a href="#" title="Disable"> {{$useremp->name}}</a></td>
+                                                                </tr>
+                                                            @empty
+                                                                <tr>
+                                                                    <td>No tiene empresas asociadas</td>
+                                                                </tr>
+                                                            @endforelse --}}
+                                                        </form>    
                                                     </tbody>
                                                 </table>
                                                 <div class="pagination-sm">
@@ -142,8 +155,8 @@
                                                             <th>Op.</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="text-muted buscar">
-                                                        @forelse ($empresasDisponibles as $useremp)
+                                                    <tbody id="tEmpDisp" class="text-muted buscar">
+                                                        {{-- @forelse ($empresasDisponibles as $useremp)
                                                             <tr>
                                                                 <td>{{$useremp->name}}</td>
                                                                 <td>
@@ -152,7 +165,7 @@
                                                             </tr>
                                                         @empty
                                                             <td>Están todas las empresas asociadas</td>
-                                                        @endforelse
+                                                        @endforelse --}}
                                                     </tbody>
                                                 </table>
                                                 <div class="pagination-sm">
@@ -176,3 +189,7 @@
         </div>
     </div>
 @endsection
+
+@push('scriptchosen')
+    <script src="{{asset('/js/userEmpresa.js')}}"></script>
+@endpush

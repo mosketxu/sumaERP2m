@@ -14,11 +14,13 @@ class CreateTableUserEmpresa extends Migration
     public function up()
     {
         Schema::create('user_empresas', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
-            $table->primary(['user_id', 'empresa_id']);
+            // $table->primary(['user_id', 'empresa_id']);
+
         });
     }
 
