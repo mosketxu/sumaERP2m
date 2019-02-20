@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
         Route::get('/empAsoc/{userid}', 'UserEmpresaController@empAsoc');
         Route::get('/empDisp/{userid}', 'UserEmpresaController@empDisp');
         Route::post('/asoc/{userid}/{empid}', 'UserEmpresaController@store');
-        Route::delete('disp/{userid}/{userempid}', 'UserEmpresaController@destroy');
+        Route::delete('/disp/{userid}/{userempid}/{empid}', 'UserEmpresaController@destroy');
     });
     
     Route::resource('genero', 'GeneroController');

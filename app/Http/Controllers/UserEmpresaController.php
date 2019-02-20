@@ -40,7 +40,6 @@ class UserEmpresaController extends Controller
 
     public function store(Request $request,$userId,$empresaId)
     {
-        // dd('llego');
         if ($request->ajax()) {
             $userEmpresa=DB::table('user_empresas')->insertGetId([
                 'empresa_id' => $empresaId,
@@ -58,6 +57,25 @@ class UserEmpresaController extends Controller
                 'idUserEmp'=>$userEmpresa,
                 'nam'=>$nam,
             ]);
+        }
+    }
+
+    // public function destroy($userId,$idUserEmp)
+    public function destroy(Request $request,$userId,$idUserEmp,$idEmp)
+    {
+        if ($request->ajax()) {
+            $empresa=UserEmpresa::findOrFail($idUserEmp);
+            // $emp=Empresa::find($idEmp);
+            $emp=  DB::table('empresas')->where('id',$idEmp)->first();
+            $empresa->delete();
+
+            return response()->json([
+                'idEmp'=>$idEmp,
+                'idUser'=>$userId,
+                'nam'=>$emp->name,
+                'idUserEmp'=>$idUserEmp,
+                ]
+            ); 
         }
     }
 }

@@ -113,20 +113,15 @@
                                         {{-- Empresas Asociadas --}}
                                         <div class="col-sm-6">
                                             <div class="table-responsive">
-                                                <table class="table table-hover table-sm small" id="tablaAsociadas"cellspacing="0" width=100%>
+                                                <table class="table table-hover table-sm small" id="tablaAsociadas" cellspacing="0" width=100%>
                                                     <thead>
                                                         <tr>
                                                             <th>Asociadas</th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tEmpAsoc"class="text-muted buscar">
                                                         <form method="POST" action="">
-                                                            <div class="alert alert-success alert-dissmisible" id="msj-success" role="alert" style="display:none">
-                                                                <strong>Todo OK</strong>
-                                                            </div>
-                                                            <div id="msj-error" class="alert alert-danger alert-dismissible" role="alert" style="display:none">
-                                                                <strong id="msj"> </strong> 
-                                                            </div>
                                                             <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
                                                             {{-- @forelse ($empresasAsociadas as $useremp)
                                                                 <tr>
@@ -148,24 +143,27 @@
                                         {{-- Empresas Disponibles --}}
                                         <div class="col-sm-6">
                                             <div class="table-responsive">
-                                                <table class="table table-hover table-sm small" cellspacing="0" width=100%>
+                                                <table class="table table-hover table-sm small" id="tablaDisponibles"cellspacing="0" width=100%>
                                                     <thead>
                                                         <tr>
                                                             <th>Empresa</th>
-                                                            <th>Op.</th>
+                                                            <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tEmpDisp" class="text-muted buscar">
-                                                        {{-- @forelse ($empresasDisponibles as $useremp)
-                                                            <tr>
-                                                                <td>{{$useremp->name}}</td>
-                                                                <td>
-                                                                    <a href="#" title="Enable"><i class="far fa-eye text-success"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        @empty
-                                                            <td>Están todas las empresas asociadas</td>
-                                                        @endforelse --}}
+                                                        <form method="POST" action="">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token2">
+                                                            {{-- @forelse ($empresasDisponibles as $useremp)
+                                                                <tr>
+                                                                    <td>{{$useremp->name}}</td>
+                                                                    <td>
+                                                                        <a href="#" title="Enable"><i class="far fa-eye text-success"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            @empty
+                                                                <td>Están todas las empresas asociadas</td>
+                                                            @endforelse --}}
+                                                        </form>
                                                     </tbody>
                                                 </table>
                                                 <div class="pagination-sm">
