@@ -41,6 +41,7 @@ class UserEmpresaController extends Controller
     public function store(Request $request,$userId,$empresaId)
     {
         if ($request->ajax()) {
+            
             $userEmpresa=DB::table('user_empresas')->insertGetId([
                 'empresa_id' => $empresaId,
                 'user_id' => $userId]
@@ -52,8 +53,6 @@ class UserEmpresaController extends Controller
             $nam=$empresa->name;
 
             return response()->json([
-                'idEmp'=>$empresaId,
-                'idUser'=>$userId,
                 'idUserEmp'=>$userEmpresa,
                 'nam'=>$nam,
             ]);

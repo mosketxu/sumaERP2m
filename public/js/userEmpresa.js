@@ -11,7 +11,7 @@ function CargarDisp(){
     $.get(route,function(res){
         // console.log(res);
         $(res).each(function(key,value){
-			empDisp.append("<tr id='d"+value.idEmp+"'><td><a href='#'  OnClick='Asociar("+value.idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-fw fa-lg'></i></a></td><td>"+value.empresa+"</td></tr>");
+			empDisp.append("<tr id='d"+value.idEmp+"'><td><a href='#'  OnClick='Asociar("+value.idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-lg'></i></a></td><td>"+value.empresa+"</td></tr>");
         });
     });
 }
@@ -32,7 +32,6 @@ function CargarAsoc(){
 function Asociar(idEmp){
     var user=$("#userid").html();
     var token = $("#token").val();
-    var dato = idEmp;
     
     var route = "/erp/userEmpresa/asoc/"+user+"/"+idEmp;
 	$.ajax({
@@ -40,10 +39,11 @@ function Asociar(idEmp){
 	 	headers: {'X-CSRF-TOKEN': token},
 	 	type: 'POST',
         dataType: 'json',
-        data:{ UserEmpresa: dato},
+        data:{ UserEmpresa: idEmp},
 	 	success: function(data){
-            $("#tablaAsociadas").append("<tr id='a"+data.idUserEmp+"'><td>"+data.nam+"</td><td><a href='#' OnClick='Disponer("+data.idUserEmp+","+data.idEmp+");'><i class='text-danger fas fa-arrow-alt-circle-right fa-fw fa-lg'></i></a></td></tr>");
-            var idn="#d"+data.idEmp
+             console.log(data);
+            $("#tablaAsociadas").prepend("<tr id='a"+data.idUserEmp+"'><td class='text-success'>"+data.nam+"</td><td><a href='#' OnClick='Disponer("+data.idUserEmp+","+idEmp+");'><i class='text-danger fas fa-arrow-alt-circle-right fa-fw fa-lg'></i></a></td></tr>");
+            var idn="#d"+idEmp
             $(idn).remove()
          },
          error: function(){
@@ -57,7 +57,6 @@ function Disponer(idUserEmp,idEmp){
     
     var user=$("#userid").html();
     var token = $("#token2").val();
-    var dato = idUserEmp;
    
     var route = "/erp/userEmpresa/disp/"+user+"/"+idUserEmp+"/"+idEmp;
     
@@ -66,11 +65,10 @@ function Disponer(idUserEmp,idEmp){
 	 	headers: {'X-CSRF-TOKEN': token},
 	 	type: 'delete',
          dataType: 'json',
-        data:{ UserEmpresa: dato},
+        data:{ UserEmpresa: idUserEmp},
 	 	success: function(data){
-             console.log(data);
-            $("#tablaDisponibles").append("<tr id='d"+data.idEmp+"'><td><a href='#'  OnClick='Asociar("+data.idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-fw fa-lg'></i></a></td><td>"+data.nam+"</td></tr>");
-            var idn="#a"+data.idUserEmp;
+            $("#tablaDisponibles").prepend("<tr id='d"+idEmp+"'><td><a href='#'  OnClick='Asociar("+idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-fw fa-lg'></i></a></td><td class='text-danger'>"+data.nam+"</td></tr>");
+            var idn="#a"+idUserEmp;
             $(idn).remove();
          },
          error: function(){

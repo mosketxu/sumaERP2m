@@ -149,8 +149,8 @@
                                                 <table class="table table-hover table-sm small" id="tablaDisponibles"cellspacing="0" width=100%>
                                                     <thead>
                                                         <tr>
-                                                            <th>Disponibles</th>
                                                             <th></th>
+                                                            <th>Disponibles</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tEmpDisp" class="text-muted buscar">
