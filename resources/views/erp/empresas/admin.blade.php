@@ -7,7 +7,7 @@
             <li class="breadcrumb-item">
                 <a href="#">Empresas</a>
             </li>
-            <li class="breadcrumb-item active">Listado de Empresas</li>
+            <li class="breadcrumb-item active">Listado de Empresas Admin</li>
         </ol>
 
         <!-- tabla empresas -->

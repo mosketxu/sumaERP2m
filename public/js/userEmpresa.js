@@ -11,7 +11,7 @@ function CargarDisp(){
     $.get(route,function(res){
         // console.log(res);
         $(res).each(function(key,value){
-			empDisp.append("<tr id='d"+value.idEmp+"'><td><a href='#'  OnClick='Asociar("+value.idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-lg'></i></a></td><td>"+value.empresa+"</td></tr>");
+			empDisp.append("<tr id='d"+value.idEmp+"'><td class='text-left'><a href='#'  OnClick='Asociar("+value.idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-lg'></i></a></td><td>"+value.empresa+"</td></tr>");
         });
     });
 }
@@ -24,7 +24,7 @@ function CargarAsoc(){
     $.get(route,function(res){
         // console.log(res);
         $(res).each(function(key,value){
-			empAsoc.append("<tr id='a"+value.idUserEmp+"'><td>"+value.empresa+"</td><td><a href='#' id='idAsoc' OnClick='Disponer("+value.idUserEmp+","+value.idEmp+");'><i class='text-danger fas fa-arrow-alt-circle-right fa-fw fa-lg'></i></a></td></tr>");
+			empAsoc.append("<tr id='a"+value.idUserEmp+"'><td>"+value.empresa+"</td><td  class='text-right'><a href='#' id='idAsoc' OnClick='Disponer("+value.idUserEmp+","+value.idEmp+");'><i class='text-danger fas fa-arrow-alt-circle-right fa-fw fa-lg'></i></a></td></tr>");
         });
     });
 }
@@ -42,7 +42,7 @@ function Asociar(idEmp){
         data:{ UserEmpresa: idEmp},
 	 	success: function(data){
              console.log(data);
-            $("#tablaAsociadas").prepend("<tr id='a"+data.idUserEmp+"'><td class='text-success'>"+data.nam+"</td><td><a href='#' OnClick='Disponer("+data.idUserEmp+","+idEmp+");'><i class='text-danger fas fa-arrow-alt-circle-right fa-fw fa-lg'></i></a></td></tr>");
+            $("#tablaAsociadas").prepend("<tr id='a"+data.idUserEmp+"'><td class='text-success'>"+data.nam+"</td><td  class='text-right'><a href='#' OnClick='Disponer("+data.idUserEmp+","+idEmp+");'><i class='text-danger fas fa-arrow-alt-circle-right fa-fw fa-lg'></i></a></td></tr>");
             var idn="#d"+idEmp
             $(idn).remove()
          },
@@ -67,7 +67,7 @@ function Disponer(idUserEmp,idEmp){
          dataType: 'json',
         data:{ UserEmpresa: idUserEmp},
 	 	success: function(data){
-            $("#tablaDisponibles").prepend("<tr id='d"+idEmp+"'><td><a href='#'  OnClick='Asociar("+idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-fw fa-lg'></i></a></td><td class='text-danger'>"+data.nam+"</td></tr>");
+            $("#tablaDisponibles").prepend("<tr id='d"+idEmp+"'><td  class='text-left'><a href='#'  OnClick='Asociar("+idEmp+");'><i class='text-success fas fa-arrow-alt-circle-left fa-fw fa-lg'></i></a></td><td class='text-danger'>"+data.nam+"</td></tr>");
             var idn="#a"+idUserEmp;
             $(idn).remove();
          },

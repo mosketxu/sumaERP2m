@@ -12,12 +12,13 @@
             <span>Empresas</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('user.index')}}">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Usuarios</span></a>
-        </li>
-
+        @can('view',\App\User::class) 
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('user.index')}}">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Usuarios</span></a>
+          </li>
+        @endcan
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
