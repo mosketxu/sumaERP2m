@@ -24,5 +24,6 @@ $factory->define(App\Empresa::class, function (Faker $faker) {
         'cuentacontable' => random_int(410000, 410100),
         'marta' => '50',
         'susana' => '50',
+        'observaciones' => $faker->text(100),
     ];
 });

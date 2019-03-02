@@ -33,6 +33,11 @@
     font-weight: 300;
     line-height: 1.1;
 }
+.display-sm1 {
+    font-size: 0.8rem;
+    font-weight: 100;
+    line-height: 0.8;
+}
 
 .flex-container {
     display: flex;
