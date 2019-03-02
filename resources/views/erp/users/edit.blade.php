@@ -105,7 +105,6 @@
                                 </form>
                             </div>
                         </div>
-                        {{-- Empresas Asociadas --}}
                         <div class="col-sm-8">
                             <div class="card">
                                 <div class="card-header">

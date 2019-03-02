@@ -9,6 +9,8 @@
                             <div class="col-auto mr-auto">
                                 <a  href="{{route('empresas.create') }}" role="button"><i class="fas fa-plus-circle fa-lg text-primary"></i></a>
                             </div>
+                        @else
+                            <div class="col-auto mr-auto"></div>
                         @endcan
                         <div class="col-auto">
                             <form method="GET" action="{{route('empresas.index') }}">

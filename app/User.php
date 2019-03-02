@@ -75,17 +75,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function empresas()
-    {
-        return $this->belongsToMany(Empresa::class);
-    }
-
     public function userempresa()
     {
         return $this->hasMany(UserEmpresa::class);
     }
     public function getImagenUrlAttribute()
     {
-        return $this->avatar ? 'storage/img/avatar/'.$this->avatar : '1_avatar1546376253.jpg';
+        return $this->avatar ? 'storage/img/avatar/' . $this->avatar : '1_avatar1546376253.jpg';
     }
 }

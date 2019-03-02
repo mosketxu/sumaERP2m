@@ -9,6 +9,7 @@ $factory->define(App\Empresa::class, function (Faker $faker) {
     return [
         'name' => $name,
         'slug' => str_slug($name, '-'),
+        'alias' => $name . '-alias',
         'tipoempresa_id' => $tipoempresa,
         'direccion' => $faker->address,
         'codpostal' => $faker->postcode,

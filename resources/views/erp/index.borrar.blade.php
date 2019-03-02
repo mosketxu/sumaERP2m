@@ -17,15 +17,15 @@
 						<td>{{ $empresa->id }}</td>
 						<td>{{ $empresa->name}}</td>
 						<td>
-						@can('destroy_empresas')
-							<a href="{{route('empresas.destroy',$note->id) }}">Eliminar nota</a>
-						@else
-						Usted no puede eliminar esta nota
-@endcan
-</td>
-</tr>
-@endforeach
-</tbody>
-</table>
-</body>
+							@can('destroy_empresas')
+								<a href="{{route('empresas.destroy',$note->id) }}">Eliminar nota</a>
+							@else
+								Usted no puede eliminar esta nota
+							@endcan
+						</td>
+					</tr>
+				@endforeach
+				</tbody>
+			</table>
+	</body>
 </html>

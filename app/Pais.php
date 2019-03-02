@@ -17,5 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pais extends Model
 {
-    //
+    public $incrementing = false;
+    // protected $primarykey='id'; no hace falta porque la clave ya es id
+    public function paisempresa()
+    {
+        return $this->hasMany(Empresa::class);
+    }
 }

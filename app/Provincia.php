@@ -15,5 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Provincia extends Model
 {
-    //
+    public $incrementing = false;
+    public function provinciaempresa()
+    {
+        return $this->hasMany(Empresa::class);
+    }
 }

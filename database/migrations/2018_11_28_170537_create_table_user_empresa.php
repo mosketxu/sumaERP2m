@@ -19,8 +19,7 @@ class CreateTableUserEmpresa extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
-            // $table->primary(['user_id', 'empresa_id']);
-
+            $table->unique(['user_id', 'empresa_id']);
         });
     }
 

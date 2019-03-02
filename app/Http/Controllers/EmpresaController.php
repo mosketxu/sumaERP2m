@@ -37,6 +37,8 @@ class EmpresaController extends Controller
             $empresas = Empresa::search($request->busca)
                 ->with([
                     'tipoempresa',
+                    'provincia',
+                    'pais',
                     'bancos' => function ($q) {
                         $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
                             ->where('principal', '=', '1');
@@ -50,11 +52,14 @@ class EmpresaController extends Controller
                 ->paginate(10);
             return view('erp.empresas.admin', compact('empresas', 'busqueda'));
         } else {
-            $empresas = Empresa::whereHas('userempresa', function ($query) use ($user) {
-                $query->where('user_id', $user);
-            })
+            $empresas = Empresa::search($request->busca)
+                ->whereHas('userempresa', function ($query) use ($user) {
+                    $query->where('user_id', $user);
+                })
                 ->with([
                     'tipoempresa',
+                    'provincia',
+                    'pais',
                     'bancos' => function ($q) {
                         $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
                             ->where('principal', '=', '1');
@@ -110,34 +115,39 @@ class EmpresaController extends Controller
     // Con este método llamo al formulario donde voy a MOSTRAR el registro
     public function show($slug)
     {
-        $empresa = Empresa::with([
-            'tipoempresa',
-            'bancos' => function ($q) {
-                $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                    ->where('principal', '=', '1');
-            },
-            'condFacturacions' => function ($q) {
-                $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
-            }
-        ])->whereSlug($slug)->first();
+        $empresa = Empresa::whereSlug($slug)
+            ->with([
+                'tipoempresa',
+                'provincia',
+                'pais',
+                'bancos' => function ($q) {
+                    $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                        ->where('principal', '=', '1');
+                },
+                'condFacturacions' => function ($q) {
+                    $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                        ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
+                }
+            ])->first();
+        // dd($empresa);
         return view('erp.empresas.show', compact('empresa'));
     }
 
     // Con este método llamo al formulario donde voy a editar el registro
     public function edit($slug)
     {
-        $empresa = Empresa::with([
-            'tipoempresa',
-            'bancos' => function ($q) {
-                $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                    ->where('principal', '=', '1');
-            },
-            'condFacturacions' => function ($q) {
-                $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
-            }
-        ])->whereSlug($slug)->first();
+        $empresa = Empresa::whereSlug($slug)
+            ->with([
+                'tipoempresa',
+                'bancos' => function ($q) {
+                    $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                        ->where('principal', '=', '1');
+                },
+                'condFacturacions' => function ($q) {
+                    $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                        ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
+                }
+            ])->first();
 
         return view('erp.empresas.edit', compact('empresa'));
     }

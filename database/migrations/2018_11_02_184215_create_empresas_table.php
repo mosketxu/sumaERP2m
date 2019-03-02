@@ -17,13 +17,16 @@ class CreateEmpresasTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->nullable();
+            $table->string('alias')->nullable();
             $table->unsignedInteger('tipoempresa_id')->nullable();
             $table->foreign('tipoempresa_id')->references('id')->on('tipo_empresas');
             $table->string('direccion')->nullable();
             $table->string('codpostal')->nullable();
             $table->string('localidad')->nullable();
-            $table->integer('provincia_id')->nullable();
+            $table->string('provincia_id')->nullable();
+            $table->foreign('provincia_id')->references('id')->on('provincias');
             $table->string('pais_id', 2)->nullable();
+            $table->foreign('pais_id')->references('id')->on('pais');
             $table->string('cifnif')->nullable();
             $table->string('tfno')->nullable();
             $table->string('email')->nullable();
