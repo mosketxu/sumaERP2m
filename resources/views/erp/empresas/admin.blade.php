@@ -11,7 +11,7 @@
         </ol>
 
         <!-- tabla empresas -->
-        @include('erp.empresas.partials._tempresas')
+        @include('partials._cardEmpresas')
     </div>
 @endsection
 

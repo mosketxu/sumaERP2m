@@ -60,7 +60,7 @@ class Empresa extends Model
 
   public function condFacturacions()
   {
-    return $this->hasMany(CondicionFacturacion::class);
+    return $this->hasOne(CondicionFacturacion::class);
   }
 
   public function contactos()

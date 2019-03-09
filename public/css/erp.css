@@ -1,6 +1,22 @@
+:root {
+    --activo: #e4f7dc;
+    --medioactivo: #e4f7dc;
+    --noactivo: #e4f7dc;
+}
+
 .photoAvatar {
     width: 35px;
     border-radius: 50%;
     margin: 0 !important;
     padding: 0 !important;
+}
+
+.bg-activo {
+    background-color: var(--activo);
+}
+.bg-noactivo {
+    background-color: var(--noactivo);
+}
+.bg-medioactivo {
+    background-color: var(--medioactivo);
 }

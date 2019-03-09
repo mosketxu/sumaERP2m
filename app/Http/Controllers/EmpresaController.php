@@ -39,17 +39,19 @@ class EmpresaController extends Controller
                     'tipoempresa',
                     'provincia',
                     'pais',
+                    'condFacturacions' => function ($q) {
+                        $q->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id')
+                            ->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id');
+                    },
                     'bancos' => function ($q) {
                         $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
                             ->where('principal', '=', '1');
                     },
-                    'condFacturacions' => function ($q) {
-                        $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                            ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
-                    },
                 ])
                 ->orderBy('name', 'asc')
                 ->paginate(10);
+
+            // dd($empresas);
             return view('erp.empresas.admin', compact('empresas', 'busqueda'));
         } else {
             $empresas = Empresa::search($request->busca)
@@ -117,19 +119,18 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::whereSlug($slug)
             ->with([
+                'contactos',
                 'tipoempresa',
                 'provincia',
                 'pais',
                 'bancos' => function ($q) {
-                    $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                        ->where('principal', '=', '1');
+                    $q->join('banks', 'banks.id', '=', 'bancos.bank_id');
                 },
                 'condFacturacions' => function ($q) {
                     $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
                         ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
                 }
             ])->first();
-        // dd($empresa);
         return view('erp.empresas.show', compact('empresa'));
     }
 

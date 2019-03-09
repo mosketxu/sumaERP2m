@@ -1,9 +1,15 @@
 /* GENERICO */
 
-.mb-10,
-.my-10 {
-    margin-bottom: 9rem !important;
+.mr-105,
+.mx-105 {
+    margin-right: 0 !important;
 }
+
+.ml-105,
+.mx-105 {
+    margin-left: 0 !important;
+}
+
 .display-5 {
     font-size: 2.5rem;
     font-weight: 400;
