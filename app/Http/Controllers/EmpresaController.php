@@ -28,8 +28,6 @@ class EmpresaController extends Controller
             $busqueda = '';
         }
 
-        // if (auth()->user()->role_id == '1') {
-
         $user = auth()->user()->id;
         $rol = auth()->user()->role_id;
 

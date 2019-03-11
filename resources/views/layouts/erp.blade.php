@@ -15,12 +15,14 @@
         <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">
         <!-- Custom styles for this app -->
         <link href="{{asset('css/suma.css')}}" rel="stylesheet">
-        <!-- Page level plugin CSS-->
-        <link href="{{asset('css/dataTables.bootstrap4.css')}}" rel="stylesheet">
+        <!-- Select2 styles for this template-->
+        <link href="{{asset('css/select2.css')}}" rel="stylesheet" />
         <!-- Custom styles for this template-->
         <link href="{{asset('css/sb-admin.css')}}" rel="stylesheet">
         <!-- Custom styles for this app -->
         <link href="{{asset('css/erp.css')}}" rel="stylesheet">
+
+
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">

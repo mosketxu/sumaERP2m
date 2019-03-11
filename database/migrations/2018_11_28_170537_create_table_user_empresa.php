@@ -20,6 +20,7 @@ class CreateTableUserEmpresa extends Migration
             $table->unsignedInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->unique(['user_id', 'empresa_id']);
+            $table->timestamps();
         });
     }
 

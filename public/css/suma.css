@@ -104,6 +104,14 @@
     padding-right: 1rem !important;
 }
 
+.navbar .nav-link-cap {
+    font-size: 11px;
+    text-transform: capitalize;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+
 .navbar .nav-item.active {
     border-left: #3490dc 1px solid;
 }

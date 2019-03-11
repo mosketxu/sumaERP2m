@@ -54,7 +54,8 @@ class UserPolicy
      */
     public function update(User $user)
     {
-        return $user->id === Auth::user()->id;
+        return $user->role_id === 1;
+        // return $user->id === Auth::user()->id;
     }
 
     /**

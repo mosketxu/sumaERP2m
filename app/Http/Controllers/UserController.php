@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App \{
-    User, Role, Empresa, UserEmpresa
+    User,
+    Role,
+    Empresa,
+    UserEmpresa
 };
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -16,6 +19,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->authorizeResource(User::class, 'update'); revisar esto no consigo que funcione
     }
 
     public function index()
@@ -29,25 +33,39 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('erp.users.create', compact('roles'));
+        $empresas = Empresa::all();
+        return view('erp.users.create', compact('roles', 'empresas'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'useremail' => 'required|email|unique:users,email',
-            'userpassword' => 'required|min:6|confirmed',
-            'userroleId' => 'required'
+            'newusername' => 'required',
+            'newuseremail' => 'required|email|unique:users,email',
+            'newuserpassword' => 'required|min:6|confirmed',
+            'newuserroleId' => 'required'
         ]);
+
         $user = new User([
-            'name' => $request->get('username'),
-            'lastname' => $request->get('userlastname'),
-            'email' => $request->get('useremail'),
-            'password' => bcrypt($request->get('userpassword')),
-            'role_id' => $request->get('userroleId'),
+            'name' => $request->get('newusername'),
+            'lastname' => $request->get('newuserlastname'),
+            'email' => $request->get('newuseremail'),
+            'password' => bcrypt($request->get('newuserpassword')),
+            'role_id' => $request->get('newuserroleId'),
         ]);
         $user->save();
+
+        $userEmpresas=$request->newuserempresaId;
+
+        $cont=0; 
+        while ($cont  <count($userEmpresas)){
+            $useremp = new UserEmpresa();
+            $useremp->user_id=$user->id;
+            $useremp->empresa_id=$userEmpresas[$cont];
+            $useremp->save ( );
+            $cont=$cont + 1;
+        }
+
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha añadido');
     }
 
@@ -103,14 +121,20 @@ class UserController extends Controller
             unset($data['password']);
         }
         $user->role_id = $request->get('userroleId');
-        // $user->save();
         $user->update($data);
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha actualizado');
     }
 
-    public function destroy($slug)
+    public function destroy($id)
     {
-        //
+            $user = Auth::user();
+            $usuario = User::findOrfail($id);
+            if ($user->can('delete',$user)) {
+                $usuario->delete();
+                return redirect()->route('user.index')->with('status', 'Usuario ' . $usuario->name . ' eliminado!');;
+            } else {
+                echo 'Not Authorized.';
+            }
     }
 
     public function profile()

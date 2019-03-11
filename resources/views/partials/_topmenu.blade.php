@@ -44,12 +44,11 @@
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{-- <i class="fas fa-user-circle fa-fw"></i> --}}
-                    {{-- <span ><img class="photoAvatar" alt="avatar" src="{{asset('storage/img/avatar/'.$user->avatar)}}"></span> --}}
-                    {{-- {{ Auth::user()->avatar}} --}}
+                <a class="nav-link-cap dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span ><img class="photoAvatar" alt="avatar" src="{{asset(Auth::user()->getImagenUrlAttribute())}}"></span>
-                </a>                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <span class="align-middle text-white">{{Auth::user()->name}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ route('user.profile') }}">Mi Perfil</a>
                 <a class="dropdown-item" href="#">Activity Log</a>
                 <div class="dropdown-divider"></div>
