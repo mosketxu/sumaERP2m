@@ -3,13 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App \{
-    Empresa,
-    UserEmpresa
-};
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use App\Empresa;
 use Illuminate\Support\Facades\Auth;
 
 class EmpresaController extends Controller
@@ -29,51 +23,27 @@ class EmpresaController extends Controller
         }
 
         $user = auth()->user()->id;
-        $rol = auth()->user()->role_id;
 
-        if (auth()->user()->role_id == '1') {
-            $empresas = Empresa::search($request->busca)
-                ->with([
-                    'tipoempresa',
-                    'provincia',
-                    'pais',
-                    'condFacturacions' => function ($q) {
-                        $q->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id')
-                            ->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id');
-                    },
-                    'bancos' => function ($q) {
-                        $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                            ->where('principal', '=', '1');
-                    },
-                ])
-                ->orderBy('name', 'asc')
-                ->paginate(10);
-
-            // dd($empresas);
-            return view('erp.empresas.admin', compact('empresas', 'busqueda'));
-        } else {
-            $empresas = Empresa::search($request->busca)
-                ->whereHas('userempresa', function ($query) use ($user) {
-                    $query->where('user_id', $user);
-                })
-                ->with([
-                    'tipoempresa',
-                    'provincia',
-                    'pais',
-                    'bancos' => function ($q) {
-                        $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
-                            ->where('principal', '=', '1');
-                    },
-                    'condFacturacions' => function ($q) {
-                        $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
-                            ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
-                    },
-                ])
-                ->orderBy('name', 'asc')
-                ->paginate(10);
-            return view('erp.empresas.index', compact('empresas', 'busqueda'));
-        }
+        $empresas = Empresa::search($request->busca)
+            ->whereHas('userempresa', function ($query) use ($user) {
+                $query->where('user_id', $user);
+            })
+            ->with([
+                'tipoempresa', 'provincia', 'pais',
+                'condFacturacions' => function ($q) {
+                    $q->join('forma_pagos', 'forma_pagos.id', '=', 'condicion_facturacions.formapago_id')
+                    ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
+                },
+                'bancos' => function ($q) {
+                    $q->join('banks', 'banks.id', '=', 'bancos.bank_id')
+                        ->where('principal', '=', '1');
+                },
+            ])
+            ->orderBy('name', 'asc')
+            ->paginate(10);
+        return view('erp.empresas.index', compact('empresas', 'busqueda'));
     }
+    
 
     // Llamo al formulario donde voy a crear el registro
     public function create()

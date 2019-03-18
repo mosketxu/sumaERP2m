@@ -33,6 +33,16 @@ class User extends Authenticatable
         'name', 'lastname', 'email', 'password', 'estado'
     ];
 
+    public function getAdminAttribute()
+    {
+        return $this->role_id == '1';
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id == '1';
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
