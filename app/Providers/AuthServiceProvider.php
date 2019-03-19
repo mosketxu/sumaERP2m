@@ -2,11 +2,8 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;  Creo que no es necesaria
-
-use App\Empresa;
-use App\Policies\EmpresaPolicy;
-use App\Policies\UserPolicy;
+use App\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,7 +14,6 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy', //se puede borrar
         'App\Empresa' => 'App\Policies\EmpresaPolicy',
         'App\User' => 'App\Policies\UserPolicy',
         //        Empresa::class => EmpresaPolicy::class,
@@ -32,6 +28,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('update-user', function (User $user, User $usuario) {
+            return true;
+            return $user->owns($post);
+        });
     }
 }

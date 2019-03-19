@@ -24,9 +24,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = User::with([
-            'role',
-        ])->get();
+        $usuarios = User::get();
         return view('erp.users.index', compact('usuarios'));
     }
 
@@ -43,7 +41,7 @@ class UserController extends Controller
             'newusername' => 'required',
             'newuseremail' => 'required|email|unique:users,email',
             'newuserpassword' => 'required|min:6|confirmed',
-            'newuserroleId' => 'required'
+            'newuserrole' => 'required'
         ]);
 
         $user = new User([
@@ -51,19 +49,19 @@ class UserController extends Controller
             'lastname' => $request->get('newuserlastname'),
             'email' => $request->get('newuseremail'),
             'password' => bcrypt($request->get('newuserpassword')),
-            'role_id' => $request->get('newuserroleId'),
+            'role' => $request->get('newuserrole'),
         ]);
         $user->save();
 
-        $userEmpresas=$request->newuserempresaId;
+        $userEmpresas = $request->newuserempresaId;
 
-        $cont=0; 
-        while ($cont  <count($userEmpresas)){
+        $cont = 0;
+        while ($cont  < count($userEmpresas)) {
             $useremp = new UserEmpresa();
-            $useremp->user_id=$user->id;
-            $useremp->empresa_id=$userEmpresas[$cont];
-            $useremp->save ( );
-            $cont=$cont + 1;
+            $useremp->user_id = $user->id;
+            $useremp->empresa_id = $userEmpresas[$cont];
+            $useremp->save();
+            $cont = $cont + 1;
         }
 
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha añadido');
@@ -99,7 +97,7 @@ class UserController extends Controller
             // 'useremail'=> 'required|email|unique:users,email,'.$user->id,
             'useremail' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id), ],
             'userpassword' => 'confirmed',
-            'userroleId' => 'required'
+            'userrole' => 'required'
         ], [
             'username.required' => 'El Nombre es obligatorio',
             'useremail.required' => 'El Email es obligatorio',
@@ -120,21 +118,21 @@ class UserController extends Controller
         } else {
             unset($data['password']);
         }
-        $user->role_id = $request->get('userroleId');
+        $user->role = $request->get('userrole');
         $user->update($data);
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha actualizado');
     }
 
     public function destroy($id)
     {
-            $user = Auth::user();
-            $usuario = User::findOrfail($id);
-            if ($user->can('delete',$user)) {
-                $usuario->delete();
-                return redirect()->route('user.index')->with('status', 'Usuario ' . $usuario->name . ' eliminado!');;
-            } else {
-                echo 'Not Authorized.';
-            }
+        $user = Auth::user();
+        $usuario = User::findOrfail($id);
+        if ($user->can('delete', $user)) {
+            $usuario->delete();
+            return redirect()->route('user.index')->with('status', 'Usuario ' . $usuario->name . ' eliminado!');;
+        } else {
+            echo 'Not Authorized.';
+        }
     }
 
     public function profile()

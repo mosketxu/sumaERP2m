@@ -17,17 +17,13 @@ class UserTest extends TestCase
     /** @test */
     function a_user_can_be_an_admin()
     {
-        // $this->markTestIncomplete();
-        factory(Role::class)->create(['rol' => 'admin']);
-        factory(Role::class)->create(['rol' => 'suma']);
-
         $user = factory(User::class)->create([
-            'role_id' => 2
+            'role' => 'suma'
         ]);
         // $this->assertFalse($user->admin);
         $this->assertFalse($user->isAdmin());
 
-        $user->role_id = 1;
+        $user->role = 'admin';
         $user->save();
 
         // $this->assertTrue($user->admin);

@@ -38,10 +38,10 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-pencil-ruler text-primary"></i></span>
                     </div>
-                    <select class="custom-select custom-select-sm" name="newuserroleId">
+                    <select class="custom-select custom-select-sm" name="newuserrole">
                         <option selected>Selecciona un rol...</option>
                         @foreach ($roles as $role )
-                        <option value="{{$role->id}}">{{$role->rol}}</option>                                
+                        <option value="{{$role->role}}">{{$role->role}}</option>                                
                         @endforeach
                     </select>
                 </div>
@@ -73,6 +73,7 @@
                     </select>
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>

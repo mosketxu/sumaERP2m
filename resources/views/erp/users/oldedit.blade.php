@@ -68,11 +68,11 @@
                                             <div class="input-group-prepend" title="Categoria de usuario">
                                                 <span class="input-group-text"><i class="fas fa-pencil-ruler text-primary"></i></span>
                                             </div>
-                                            <select class="custom-select custom-select-sm " name="userroleId" id="userroleId" searchable="Search here.." title="Categoria de usuario">
+                                            <select class="custom-select custom-select-sm " name="userrole" id="userrole" searchable="Search here.." title="Categoria de usuario">
                                                 <option value="">Selecciona un rol</option>
                                                 @if ($roles->count())
                                                     @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}" {{old('userroleId',$userEdit->role_id) == $role->id ? ' selected' : '' }} >{{ $role->rol }}</option> 
+                                                    <option value="{{ $role->role }}" {{old('userrole',$userEdit->role) == $role->role ? ' selected' : '' }} >{{ $role->role }}</option> 
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -111,7 +111,7 @@
                                                     <option value="">Selecciona un rol</option>
                                                     @if ($roles->count())
                                                         @foreach($roles as $role)
-                                                        <option value="{{ $role->id }}" {{old('userroleId',$userEdit->role_id) == $role->id ? ' selected' : '' }} >{{ $role->rol }}</option> 
+                                                        <option value="{{ $role->id }}" {{old('userroleId',$userEdit->role) == $role->id ? ' selected' : '' }} >{{ $role->rol }}</option> 
                                                         @endforeach
                                                     @endif
                                                 </select>

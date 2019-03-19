@@ -39,7 +39,7 @@
                     <tr>
                         <td>{{$usuario->name}}</td>
                         <td>{{$usuario->lastname}}</td>
-                        <td>{{$usuario->role->rol}}</td>
+                        <td>{{$usuario->role}}</td>
                         <td>{{$usuario->email}}</td> 
                         <td>
                             @if($usuario->estado==1)

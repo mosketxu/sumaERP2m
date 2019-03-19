@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,12 +36,17 @@ class User extends Authenticatable
 
     public function getAdminAttribute()
     {
-        return $this->role_id == '1';
+        return $this->role === 'admin';
     }
 
     public function isAdmin()
     {
-        return $this->role_id == '1';
+        return $this->role === 'admin';
+    }
+
+    public function owns(Model $model, $foreignKey = 'user_id')
+    {
+        return $this->id === $model->$foreignKey;
     }
 
     /**
@@ -55,11 +61,6 @@ class User extends Authenticatable
     public function pathAttachment()
     {
         return "/images/users/" . $this->picture;
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
     }
 
     public function userempresa()

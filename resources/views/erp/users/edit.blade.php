@@ -71,11 +71,11 @@
                                                     <div class="input-group-prepend" title="Rol">
                                                         <span class="input-group-text"><i class="fas fa-pencil-ruler text-primary"></i></span>
                                                     </div>
-                                                    <select class="custom-select custom-select-sm" name="userroleId" id="userroleId" title="Rol">
+                                                    <select class="custom-select custom-select-sm" name="userrole" id="userrole" title="Rol">
                                                         <option value="">Selecciona un rol</option>
                                                         @if ($roles->count())
                                                             @foreach($roles as $role)
-                                                            <option value="{{ $role->id }}" {{old('userroleId',$userEdit->role_id) == $role->id ? ' selected' : '' }} >{{ $role->rol }}</option> 
+                                                            <option value="{{ $role->role }}" {{old('userrole',$userEdit->role) == $role->role ? ' selected' : '' }} >{{ $role->role }}</option> 
                                                             @endforeach
                                                         @endif
                                                     </select>

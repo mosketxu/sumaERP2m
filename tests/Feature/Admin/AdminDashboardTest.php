@@ -5,7 +5,7 @@ namespace Tests\Feature\Admin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\{User,Role};
+use App\User;
 
 class AdminDashboardTest extends TestCase
 {
@@ -15,12 +15,9 @@ class AdminDashboardTest extends TestCase
     function admins_can_visit_the_admin_dashboard()
     {
         // $this->markTestIncomplete('incompleto con mensaje');
-        factory(Role::class)->create([
-            'rol' => 'admin'
-        ]);
-    
+
         $admin = factory(User::class)->create([
-            'role_id'=>'1'
+            'role' => 'admin'
         ]);
 
         // $this->withoutExceptionHandling();
@@ -35,17 +32,13 @@ class AdminDashboardTest extends TestCase
     function non_admin_users_cannot_visit_the_admin_dashboard()
     {
         // $this->markTestIncomplete('incompleto con mensaje');
-        factory(Role::class)->create([
-            'rol' => 'suma'
-        ]);
-    
-        $admin = factory(User::class)->create([
-            'role_id'=>'2'
-        ]);
-
         // $this->withoutExceptionHandling();
 
-        $this->actingAs($admin)
+        $user = factory(User::class)->create([
+            'role' => 'suma'
+        ]);
+
+        $this->actingAs($user)
             ->get(route('admin_dashboard'))
             ->assertStatus(403);     //ruta prohibida
     }
@@ -56,6 +49,5 @@ class AdminDashboardTest extends TestCase
         $this->get(route('admin_dashboard'))
             ->assertStatus(302)     //redireccion temporal a login
             ->assertRedirect('login');
-    // 
     }
 }

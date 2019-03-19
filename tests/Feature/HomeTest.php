@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\{User,Role};
+use App \{
+    User,
+    Role
+};
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,12 +18,8 @@ class HomeTest extends TestCase
     /** @test */
     function it_shows_the_dashboard_page_to_authenticated_users()
     {
-        factory(Role::class)->create([
-            'rol' => 'admin'
-        ]);
-    
         $user = factory(User::class)->create([
-            'role_id'=>'1'
+            'role' => 'admin'
         ]);
 
         $this->actingAs($user)
@@ -35,24 +34,22 @@ class HomeTest extends TestCase
             ->assertRedirect('login')
             ->assertStatus(302);
         $this->get(route('empresas.index'))
-            ->assertStatus(302) 
+            ->assertStatus(302)
             ->assertRedirect('login');
         $this->get(route('user.index'))
-            ->assertStatus(302) 
+            ->assertStatus(302)
             ->assertRedirect('login');
-            $this->get(route('user.profile'))
-            ->assertStatus(302) 
+        $this->get(route('user.profile'))
+            ->assertStatus(302)
             ->assertRedirect('login');
-            $this->get(route('user.updateavatar'))
-            ->assertStatus(302) 
+        $this->get(route('user.updateavatar'))
+            ->assertStatus(302)
             ->assertRedirect('login');
         $this->get(route('genero.index'))
-            ->assertStatus(302) 
+            ->assertStatus(302)
             ->assertRedirect('login');
     }
 
-    
-    
     /** @test */
     function it_shows_the_home_page_to_guest_user()
     {

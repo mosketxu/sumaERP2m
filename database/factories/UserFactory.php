@@ -20,10 +20,15 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $name,
         'lastname' => $lastname,
         'slug' => str_slug($name, '-', $lastname, '-'),
-        'role_id' => \App\Role::all()->random()->id,
+        'role' => \App\Role::all()->random()->role,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$12$JXWcceKqi5JiRcpMGHCxVOwibcRyh8Vn8suBh/FuDfw5F7VrIbvDi', // secret
         'remember_token' => str_random(10),
     ];
+});
+
+
+$factory->state(App\User::class, 'admin', function (Faker $faker) {
+    return ['role' => 'admin'];
 });

@@ -3,8 +3,7 @@
 namespace App\Policies;
 
 use App \{
-    User,
-    Role
+    User
 };
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
@@ -23,69 +22,37 @@ class UserPolicy
         //
     }
 
-    /**
-     * Determine whether the user can view the users.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
+    /* Determine whether the user can view the users. */
     public function view(User $user)
     {
-        return $user->role_id === 1;
+        return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can create users.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
+    /* Determine whether the user can create users. */
     public function create(User $user)
     {
-        return $user->role_id === 1;
+        return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can update users.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Empresa  $empresa
-     * @return mixed
-     */
+    /* Determine whether the user can update users. */
     public function update(User $user)
     {
-        return $user->role_id === 1;
-        // return $user->id === Auth::user()->id;
+        return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can delete the user.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
+    /* Determine whether the user can delete the user. */
     public function delete(User $user)
     {
-        return $user->role_id === 1;
+        return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can restore the empresa.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
+    /* Determine whether the user can restore the empresa. */
     public function restore(User $user)
     {
-        return $user->id === Auth::user()->id;
+        return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can permanently delete the user.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
+    /* Determine whether the user can permanently delete the user. */
     public function forceDelete(User $user)
     {
         //

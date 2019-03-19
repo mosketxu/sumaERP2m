@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\{User,Role};
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -25,18 +25,15 @@ class HideAdminRoutesTest extends TestCase
         // $this->markTestIncomplete();
         $this->post('admin/invalid-url')
             ->assertStatus(404);
-            // ->assertRedirect('login');
+        // ->assertRedirect('login');
     }
-    
+
     /** @test */
     function it_displays_404s_when_admins_visit_invalid_urls()
     {
         // $this->markTestIncomplete();
-        factory(Role::class)->create([
-            'rol' => 'admin'
-        ]);
         $admin = factory(User::class)->create([
-            'role_id'=>'1'
+            'role' => 'admin'
         ]);
         $this->actingAs($admin)
             ->get('erp/admin/invalid-url')
