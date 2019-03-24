@@ -9,7 +9,6 @@ use App \{
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EmpresaPolicyTest extends TestCase
@@ -17,88 +16,68 @@ class EmpresaPolicyTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    function admins_can_update_empresas()
-    {
-        // Arrange
+    // function admins_can_update_empresas()
+    // {
+    //     $empresa = factory(Empresa::class)->create();
+    //     $admin = $this->createAdmin();
+    //     $this->be($admin);
 
-        $empresa = factory(Empresa::class)->create();
+    //     $result = Gate::allows('update-empresa', $empresa);
 
-        $admin = $this->createAdmin();
-        $this->be($admin);
-
-        // Act
-        $result = Gate::allows('update-empresa', $empresa);
-
-        // Assert
-        $this->assertTrue($result);
-    }
+    //     $this->assertTrue($result);
+    // }
 
     /** @test */
-    function unauthorized_users_cannot_update_empresas()
-    {
-        // Arrange
-        $empresa = factory(Empresa::class)->create();
+    // function unauthorized_users_cannot_update_empresas()
+    // {
+    //     $empresa = factory(Empresa::class)->create();
+    //     $user = $this->createUser();
 
-        //creo un usuario no admin  y lo asigno como activo con foruser
-        $user = $this->createUser();
+    //     $result = Gate::forUser($user)->allows('update-empresa', $empresa);
 
-        // Act
-        $result = Gate::forUser($user)->allows('update-empresa', $empresa);
-
-        // Assert
-        $this->assertFalse($result);
-    }
+    //     $this->assertFalse($result);
+    // }
 
     /** @test */
-    function guests_cannot_update_empresas()
-    {
-        // Arrange
-        // no hay usuario activo
+    // function guests_cannot_update_empresas()
+    // {
+    //     $empresa = factory(Empresa::class)->create();
+    //     $result = Gate::allows('update-empresa', $empresa);
 
-        $empresa = factory(Empresa::class)->create();
-
-        // Act
-        $result = Gate::allows('update-empresa', $empresa);
-
-        // Assert
-        $this->assertFalse($result);
-        //el resultado es correcto porque Laravel por defecto no permite el acceso a usuarios no logados
-    }
+    //     $this->assertFalse($result);
+    //     //el resultado es correcto porque Laravel por defecto no permite el acceso a usuarios no logados
+    // }
 
     /** @test */
-    function admins_can_delete_empresa()
-    {
-        $empresa = factory(Empresa::class)->create();
+    // function admins_can_delete_empresa()
+    // {
+    //     $empresa = factory(Empresa::class)->create();
+    //     $admin = $this->createAdmin();
+    //     $this->be($admin);
 
-        $admin = $this->createAdmin();
-        $this->be($admin);
+    //     $result = Gate::allows('delete-empresa', $empresa);
 
-        // Act
-        $result = Gate::allows('delete-empresa', $empresa);
-
-        // Assert
-        $this->assertTrue($result);
-    }
+    //     $this->assertTrue($result);
+    // }
     
     /** @test */
-    function users_cannpt_delete_empresa()
-    {
-        $empresa = factory(Empresa::class)->create();
+    // function users_cannpt_delete_empresa()
+    // {
+    //     $empresa = factory(Empresa::class)->create();
+    //     $user = $this->createUser();
 
-        $user = $this->createUser();
+    //     $result = Gate::forUser($user)->allows('delete-empresa', $empresa);
 
-        $result = Gate::forUser($user)->allows('delete-empresa', $empresa);
+    //     $this->assertFalse($result);
+    // }
 
-        $this->assertFalse($result);
-    }
+    // public function createAdmin()
+    // {
+    //     return factory(User::class)->states('admin')->create();
+    // }
 
-    public function createAdmin()
-    {
-        return factory(User::class)->states('admin')->create();
-    }
-
-    public function createUser()
-    {
-        return factory(User::class)->create(['role' => 'externo']);
-    }
+    // public function createUser()
+    // {
+    //     return factory(User::class)->create(['role' => 'externo']);
+    // }
 }

@@ -22,8 +22,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Empresa' => 'App\Policies\EmpresaPolicy',
-        // 'App\User' => 'App\Policies\UserPolicy',
-        // 'App\UserEmpresa' => 'App\Policies\UserEmpresaPolicy',
+        'App\User' => 'App\Policies\UserPolicy',
+        'App\UserEmpresa' => 'App\Policies\UserEmpresaPolicy',
         //        Empresa::class => EmpresaPolicy::class,
     ];
 
@@ -49,9 +49,9 @@ class AuthServiceProvider extends ServiceProvider
             return null; //no hace falta esta linea. Si no la pongo inplicitamente es null si no es admin.
         });
 
-        Gate::define('update-user', function (User $user, User $usuario) {
+        // Gate::define('update-user', function (User $user, User $usuario) {
             // return $user->role === 'admin'; quito la comprobacion pq está en el before
-        });
+        // });
 
         
         // Gate::define('update-empresa', function (User $user, Empresa $empresa) {
@@ -64,13 +64,13 @@ class AuthServiceProvider extends ServiceProvider
 
         // Quito los Gate de aqui y los llevo a Gate::resource para tenerlos contra los típicos metodos CRUD
 
-        Gate::resource('empresa',EmpresaPolicy::class);
+        // Gate::resource('empresa',EmpresaPolicy::class);
 
         // Gate::define('view-userempresa', function (User $user, UserEmpresa $userEmpresa) {
         //         return $user->owns($userEmpresa);
         // }); me la he llevado a UserEmpresaPolicy
         // Gate::define('view-userempresa', 'App\Policies\UserEmpresaPolicy@view');
-        Gate::resource('userempresa',UserEmpresaPolicy::class);
+        // Gate::resource('userempresa',UserEmpresaPolicy::class);
 
     }
 }
