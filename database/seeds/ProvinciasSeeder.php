@@ -71,3 +71,4 @@ class ProvinciasSeeder extends Seeder
         ]);
     }
 }
+

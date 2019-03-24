@@ -31,23 +31,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'email', 'password', 'estado'
+        'name', 'lastname', 'role', 'email', 'password', 'estado'
     ];
-
-    public function getAdminAttribute()
-    {
-        return $this->role === 'admin';
-    }
-
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
-
-    public function owns(Model $model, $foreignKey = 'user_id')
-    {
-        return $this->id === $model->$foreignKey;
-    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -71,4 +56,25 @@ class User extends Authenticatable
     {
         return $this->avatar ? 'storage/img/avatar/' . $this->avatar : '1_avatar1546376253.jpg';
     }
+
+    public function getAdminAttribute()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function owns(Model $model, $foreignKey = 'user_id')
+    {
+        return $this->id === $model->$foreignKey;
+    }
+
+    public function isInactive()
+    {
+        return $this->estado === 0;
+    }
+
 }

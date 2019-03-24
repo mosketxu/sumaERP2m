@@ -34,11 +34,13 @@ class UserTest extends TestCase
     /** @test */
     function a_user_cannot_be_an_admin()
     {
-        $this->markTestIncomplete();
-        // $user = factory(User::class)->create();
+        // $this->markTestIncomplete();
+        $user = factory(User::class)->create([
+            'role' => 'externo'
+        ]);
 
-        // $user->refresh();
+        $user->refresh();
 
-        // $this->assertFalse($user->isAdmin());
+        $this->assertFalse($user->isAdmin());
     }
 }

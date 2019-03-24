@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Arr;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $name,
         'lastname' => $lastname,
         'slug' => str_slug($name, '-', $lastname, '-'),
-        'role' => \App\Role::all()->random()->role,
+        'role' => Arr::random(['admin', 'suma', 'externo']),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$12$JXWcceKqi5JiRcpMGHCxVOwibcRyh8Vn8suBh/FuDfw5F7VrIbvDi', // secret
