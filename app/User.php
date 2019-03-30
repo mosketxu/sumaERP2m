@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'role', 'email', 'password', 'estado'
+        'name', 'lastname', 'role_id', 'email', 'password', 'estado'
     ];
 
     /**
@@ -59,12 +59,12 @@ class User extends Authenticatable
 
     public function getAdminAttribute()
     {
-        return $this->role === 'admin';
+        return $this->role_id === 1;
     }
 
     public function isAdmin()
     {
-        return $this->role === 'admin';
+        return $this->role_id === 1;
     }
 
     public function owns(Model $model, $foreignKey = 'user_id')

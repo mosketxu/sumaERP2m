@@ -17,8 +17,8 @@ class UsersSeeder extends Seeder
 			'email' => 'admin@admin.com',
 			'slug' => 'admin',
 			'password' => bcrypt('1234'),
-			// 'role' => \App\Role::ADMIN
-			'role' => 'admin'
+			'role_id' => \App\Role::ADMIN
+			// 'role' => 'admin'
 		]);
 
 		factory(\App\User::class, 1)->create([
@@ -27,8 +27,8 @@ class UsersSeeder extends Seeder
 			'email' => 'alex@alex.com',
 			'slug' => 'alex-1',
 			'password' => bcrypt('1234'),
-			// 'role' => \App\Role::SUMA
-			'role' => 'suma'
+			'role_id' => \App\Role::SUMA
+			// 'role' => 'suma'
 		]);
 
 		factory(\App\User::class, 1)->create([
@@ -37,8 +37,8 @@ class UsersSeeder extends Seeder
 			'email' => 'cliente1@cliente.com',
 			'slug' => 'cliente-1',
 			'password' => bcrypt('1234'),
-			// 'role' => \App\Role::EXTERNO
-			'role' => 'externo'
+			'role_id' => \App\Role::EXTERNO
+			// 'role' => 'externo'
 		]);
 	}
 }

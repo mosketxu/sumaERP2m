@@ -18,7 +18,8 @@
                             </li>
                         @show
                         <li class="nav-item @yield('equipo')">
-                            <a href="{{ route( 'suma.equipo')}}" class="nav-link text-primary ">{{__("Equipo")}}</a>
+                            <a href="{{ route( 'equipo')}}" class="nav-link text-primary ">{{__("Equipo")}}</a>
+                            {{-- <a href="{{ url('/equipo') }}" class="nav-link text-primary ">{{__("Equipo")}}</a> --}}
                         </li>
                         <li class="nav-item {{setActive('suma.clientes')}}">
                             <a href="{{ route( 'suma.clientes')}}" class="nav-link text-primary ">{{__("Clientes")}}</a>

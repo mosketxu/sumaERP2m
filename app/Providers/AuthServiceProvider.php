@@ -50,16 +50,16 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // Gate::define('update-user', function (User $user, User $usuario) {
-            // return $user->role === 'admin'; quito la comprobacion pq está en el before
+            // return $user->role_id === 1; quito la comprobacion pq está en el before
         // });
 
         
         // Gate::define('update-empresa', function (User $user, Empresa $empresa) {
-            // return $user->role === 'admin'; Ya está en before
+            // return $user->role_id === 1; Ya está en before
         // });
 
         // Gate::define('delete-empresa', function (User $user, Empresa $empresa) {
-            // return $user->role === 'admin'; Ya está en before
+            // return $user->role_id === 1; Ya está en before
         // });
 
         // Quito los Gate de aqui y los llevo a Gate::resource para tenerlos contra los típicos metodos CRUD

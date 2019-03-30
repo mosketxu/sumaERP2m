@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $name,
         'lastname' => $lastname,
         'slug' => str_slug($name, '-', $lastname, '-'),
-        'role' => Arr::random(['admin', 'suma', 'externo']),
+        'role_id' => Arr::random(['1', '2', '3']),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$12$JXWcceKqi5JiRcpMGHCxVOwibcRyh8Vn8suBh/FuDfw5F7VrIbvDi', // secret
@@ -31,5 +31,5 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 
 $factory->state(App\User::class, 'admin', function (Faker $faker) {
-    return ['role' => 'admin'];
+    return ['role_id' => '1'];
 });

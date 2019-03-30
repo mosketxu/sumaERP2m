@@ -1,7 +1,6 @@
 <?php
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Arr;
 
 $factory->define(App\Empresa::class, function (Faker $faker) {
     $tipoempresa = $faker->randomElement([\App\TipoEmpresa::CLIENTE, \App\TipoEmpresa::PROVEEDOR, \App\TipoEmpresa::CLIENTEPROVEEDOR, \App\TipoEmpresa::INTERNO, \App\TipoEmpresa::OTROS]);
@@ -15,8 +14,7 @@ $factory->define(App\Empresa::class, function (Faker $faker) {
         'direccion' => $faker->address,
         'codpostal' => $faker->postcode,
         'localidad' => $faker->city,
-        // 'provincia_id' => \App\Provincia::all()->random()->id,
-        'provincia_id' => '08',
+        'provincia_id' => \App\Provincia::all()->random()->id,
         'pais_id' => 'ES',
         'cifnif' => $faker->ean8,
         'tfno' => $faker->e164PhoneNumber,
@@ -29,3 +27,4 @@ $factory->define(App\Empresa::class, function (Faker $faker) {
         'observaciones' => $faker->text(100),
     ];
 });
+
