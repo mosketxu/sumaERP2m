@@ -18,8 +18,12 @@ class HomeTest extends TestCase
     /** @test */
     function it_shows_the_dashboard_page_to_authenticated_users()
     {
+        factory(\App\Role::class, 1)->create(['role' => 'admin', 'descripcion' => 'administrador']);
+        factory(\App\Role::class, 1)->create(['role' => 'suma', 'descripcion' => 'miembro de suma']);
+        factory(\App\Role::class, 1)->create(['role' => 'externo', 'descripcion' => 'externo']);
+
         $user = factory(User::class)->create([
-            'role' => 'admin'
+            'role_id' => 3
         ]);
 
         $this->actingAs($user)

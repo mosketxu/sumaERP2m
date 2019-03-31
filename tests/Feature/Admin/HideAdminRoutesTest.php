@@ -32,9 +32,12 @@ class HideAdminRoutesTest extends TestCase
     function it_displays_404s_when_admins_visit_invalid_urls()
     {
         // $this->markTestIncomplete();
+        factory(\App\Role::class, 1)->create(['role' => 'admin', 'descripcion' => 'administrador']);
+
         $admin = factory(User::class)->create([
-            'role' => 'admin'
+            'role_id' => '1'
         ]);
+
         $this->actingAs($admin)
             ->get('erp/admin/invalid-url')
             ->assertStatus(404);

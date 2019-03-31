@@ -5,3 +5,4 @@
     Route::get('/{slug}/edit', 'EmpresaController@edit')->name('empresas.edit');
     Route::get('/{slug}/destroy', 'EmpresaController@destroy')->name('empresas.destroy');
     Route::get('empresas/search', 'EmpresaController@search')->name('empresas.search');
+ 

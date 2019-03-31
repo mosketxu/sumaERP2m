@@ -8,21 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class UserModelTest extends TestCase
 {
     /** @test */
-    // function a_user_owns_model()
-    // {
-    //     $userA=$this->createUser();
-    //     $userB=$this->createUser();
+    function a_user_owns_model()
+    {
+        $userA=$this->createUser();
+        $userB=$this->createUser();
 
-    //     $ownedByUserA=new OwnedModel(['user_id'=>$userA->id]);
-    //     $ownedByUserB=new OwnedModel(['user_id'=>$userB->id]);
+        $ownedByUserA=new OwnedModel(['user_id'=>$userA->id]);
+        $ownedByUserB=new OwnedModel(['user_id'=>$userB->id]);
         
-    //     $this->assertTrue($userA->owns($ownedByUserA));
-    //     $this->assertTrue($userB->owns($ownedByUserB));
+        $this->assertTrue($userA->owns($ownedByUserA));
+        $this->assertTrue($userB->owns($ownedByUserB));
 
-    //     $this->assertFalse($userA->owns($ownedByUserB));
-    //     $this->assertFalse($userB->owns($ownedByUserA));
+        $this->assertFalse($userA->owns($ownedByUserB));
+        $this->assertFalse($userB->owns($ownedByUserA));
 
-    // }
+    }
 }
 
 class OwnedModel extends Model{

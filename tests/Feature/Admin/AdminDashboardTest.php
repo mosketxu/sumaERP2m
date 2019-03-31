@@ -11,13 +11,17 @@ class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
 
+
     /** @test */
     function admins_can_visit_the_admin_dashboard()
     {
         // $this->markTestIncomplete('incompleto con mensaje');
+        factory(\App\Role::class, 1)->create(['role' => 'admin', 'descripcion' => 'administrador']);
+        factory(\App\Role::class, 1)->create(['role' => 'suma', 'descripcion' => 'miembro de suma']);
+        factory(\App\Role::class, 1)->create(['role' => 'externo', 'descripcion' => 'externo']);
 
         $admin = factory(User::class)->create([
-            'role' => 'admin'
+            'role_id' => '1'
         ]);
 
         // $this->withoutExceptionHandling();
@@ -34,8 +38,10 @@ class AdminDashboardTest extends TestCase
         // $this->markTestIncomplete('incompleto con mensaje');
         // $this->withoutExceptionHandling();
 
+        factory(\App\Role::class, 1)->create(['role' => 'suma', 'descripcion' => 'miembro de suma']);
+
         $user = factory(User::class)->create([
-            'role' => 'suma'
+            'role_id' => 2
         ]);
 
         $this->actingAs($user)
@@ -46,6 +52,10 @@ class AdminDashboardTest extends TestCase
     /** @test */
     function guests_cannot_visit_the_admin_dashboard()
     {
+        factory(\App\Role::class, 1)->create(['role' => 'admin', 'descripcion' => 'administrador']);
+        factory(\App\Role::class, 1)->create(['role' => 'suma', 'descripcion' => 'miembro de suma']);
+        factory(\App\Role::class, 1)->create(['role' => 'externo', 'descripcion' => 'externo']);
+
         $this->get(route('admin_dashboard'))
             ->assertStatus(302)     //redireccion temporal a login
             ->assertRedirect('login');

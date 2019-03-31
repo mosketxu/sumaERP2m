@@ -33,22 +33,29 @@ Route::view('/politica', 'suma/politica')->name('suma.politica');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
     
+    // ruta de entrada al erp
     Route::get('/', 'ErpController@index')->name('erp.index');
     
+    // ruta de admin
     Route::get('/admin','AdminController@index')->name('admin_dashboard')->middleware(['admin']);
 
+    // rutas de empresa
     Route::group(['prefix' => 'empresas'], function () {
         require __DIR__ .'/empresas.php';
     });
 
+    // rutas de usuarios
     Route::resource('user', 'UserController')->middleware('admin');
+
     Route::get('profile', 'UserController@profile')->name('user.profile');
     Route::post('profile', 'UserController@update_avatar')->name('user.updateavatar');
 
+    // ruta empresas asociadas
     Route::group(['middleware' => ['admin'],'prefix' => 'userEmpresa'], function () {
         require __DIR__ .'/empresasAsociadas.php';
     });
 
+    // rutas ejemplos ajax a borrar
     Route::resource('genero', 'GeneroController');
     Route::get('generos', 'GeneroController@listing');
 

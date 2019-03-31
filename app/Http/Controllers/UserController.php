@@ -40,7 +40,7 @@ class UserController extends Controller
         $request->validate([
             'newusername' => 'required',
             'newuseremail' => 'required|email|unique:users,email',
-            'newuserpassword' => 'required|min:6|confirmed',
+            // 'newuserpassword' => 'required|min:6|confirmed',
             'newuserrole' => 'required'
         ]);
 
@@ -53,15 +53,15 @@ class UserController extends Controller
         ]);
         $user->save();
 
-        $userEmpresas = $request->newuserempresaId;
-
         $cont = 0;
-        while ($cont  < count($userEmpresas)) {
-            $useremp = new UserEmpresa();
-            $useremp->user_id = $user->id;
-            $useremp->empresa_id = $userEmpresas[$cont];
-            $useremp->save();
-            $cont = $cont + 1;
+        if($userEmpresas = $request->newuserempresaId){
+            while ($userEmpresas && $cont  < count($userEmpresas)) {
+                $useremp = new UserEmpresa();
+                $useremp->user_id = $user->id;
+                $useremp->empresa_id = $userEmpresas[$cont];
+                $useremp->save();
+                $cont = $cont + 1;
+            }
         }
 
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha añadido');

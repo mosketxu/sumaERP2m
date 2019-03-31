@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->role_id === 1;
     }
 
+    public function isSuma()
+    {
+        return $this->role_id === 2;
+    }
+
     public function owns(Model $model, $foreignKey = 'user_id')
     {
         return $this->id === $model->$foreignKey;

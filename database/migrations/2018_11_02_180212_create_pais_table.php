@@ -18,6 +18,7 @@ class CreatePaisTable extends Migration
             $table->primary('id');
             $table->string('name');
             $table->string('c3',3);
+            $table->timestamps();
         });
     }
 

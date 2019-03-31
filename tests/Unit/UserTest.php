@@ -11,31 +11,31 @@ class UserTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    // function a_user_can_be_an_admin()
-    // {
-    //     $user = factory(User::class)->create([
-    //         'role' => 'suma'
-    //     ]);
-    //     // $this->assertFalse($user->admin);
-    //     $this->assertFalse($user->isAdmin());
+    function a_user_can_be_an_admin()
+    {
+        $user = factory(User::class)->create([
+            'role_id' => 2
+        ]);
+        // $this->assertFalse($user->admin);
+        $this->assertFalse($user->isAdmin());
 
-    //     $user->role = 'admin';
-    //     $user->save();
+        $user->role_id = 1;
+        $user->save();
 
-    //     // $this->assertTrue($user->admin);
-    //     $this->assertTrue($user->isAdmin());
-    // }
+        // $this->assertTrue($user->admin);
+        $this->assertTrue($user->isAdmin());
+    }
 
     /** @test */
-    // function a_user_cannot_be_an_admin()
-    // {
-    //     // $this->markTestIncomplete();
-    //     $user = factory(User::class)->create([
-    //         'role' => 'externo'
-    //     ]);
+    function a_user_cannot_be_an_admin()
+    {
+        // $this->markTestIncomplete();
+        $user = factory(User::class)->create([
+            'role_id' => 3
+        ]);
 
-    //     $user->refresh();
+        $user->refresh();
 
-    //     $this->assertFalse($user->isAdmin());
-    // }
+        $this->assertFalse($user->isAdmin());
+    }
 }

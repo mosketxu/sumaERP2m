@@ -48,6 +48,7 @@ class EmpresaController extends Controller
     // Llamo al formulario donde voy a crear el registro
     public function create()
     {
+        // dd('llego');
         $empresas = Empresa::all();
         return view('erp.empresas.create', compact('empresas'));
     }
