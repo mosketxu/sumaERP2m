@@ -41,6 +41,7 @@ class UserController extends Controller
             'newusername' => 'required',
             'newuseremail' => 'required|email|unique:users,email',
             // 'newuserpassword' => 'required|min:6|confirmed',
+            'newuserpassword' => 'required|min:6',
             'newuserrole' => 'required'
         ]);
 
@@ -119,6 +120,7 @@ class UserController extends Controller
             unset($data['password']);
         }
         $user->role = $request->get('userrole');
+       
         $user->update($data);
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha actualizado');
     }
