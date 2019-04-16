@@ -39,10 +39,12 @@ class Empresa extends Model
   {
     return $this->belongsTo(TipoEmpresa::class);
   }
+
   public function provincia()
   {
     return $this->belongsTo(Provincia::class);
   }
+  
   public function pais()
   {
     return $this->belongsTo(Pais::class);

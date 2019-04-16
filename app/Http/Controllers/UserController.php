@@ -24,7 +24,14 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = User::get();
+        $usuarios = User::with([
+            'userrole' => function ($q) {
+                $q->join('roles', 'users.role_id', '=', 'roles.id');
+            }
+        ])->get();
+
+
+        dd($usuarios);
         return view('erp.users.index', compact('usuarios'));
     }
 
@@ -119,8 +126,8 @@ class UserController extends Controller
         } else {
             unset($data['password']);
         }
-        $user->role = $request->get('userrole');
-       
+        $user->role_id = $request->get('userrole');
+    //    dd($data);
         $user->update($data);
         return redirect('/erp/user')->with('success', 'el usuario ' . $user->name . ' se ha actualizado');
     }

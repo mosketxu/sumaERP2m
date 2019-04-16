@@ -16,4 +16,11 @@ class Role extends Model
     const EXTERNO = 3;
 
     // public $incrementing = false;
+
+    public function roleuser()
+    {
+        return $this->hasMany(User::class);
+    }
+
+
 }

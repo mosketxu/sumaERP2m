@@ -3,7 +3,7 @@
         <a class="navbar-brand mr-3" href="{{route('home')}}">Suma ERP</a>
 
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-paperclip fa-spin fa-lg"></i>
+            <i class="fas fa-paperclip fa-lg"></i>
             
         </button>
 

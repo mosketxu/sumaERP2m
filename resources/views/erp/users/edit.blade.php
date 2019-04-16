@@ -75,7 +75,7 @@
                                                         <option value="">Selecciona un rol</option>
                                                         @if ($roles->count())
                                                             @foreach($roles as $role)
-                                                            <option value="{{ $role->role }}" {{old('userrole',$userEdit->role) == $role->role ? ' selected' : '' }} >{{ $role->role }}</option> 
+                                                            <option value="{{ $role->id }}" {{old('userrole',$userEdit->id) == $role->id ? ' selected' : '' }} >{{ $role->role }}</option> 
                                                             @endforeach
                                                         @endif
                                                     </select>
