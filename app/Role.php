@@ -17,10 +17,9 @@ class Role extends Model
 
     // public $incrementing = false;
 
-    public function roleuser()
+    public function users()
     {
         return $this->hasMany(User::class);
     }
-
 
 }

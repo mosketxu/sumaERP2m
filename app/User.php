@@ -48,11 +48,10 @@ class User extends Authenticatable
         return "/images/users/" . $this->picture;
     }
 
-    public function userrole()
+    public function role()
     {
         return $this->belongsTo(Role::class);
     }
-    
 
     public function userempresa()
     {

@@ -19,19 +19,14 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->authorizeResource(User::class, 'update'); revisar esto no consigo que funcione
     }
 
     public function index()
     {
-        $usuarios = User::with([
-            'userrole' => function ($q) {
-                $q->join('roles', 'users.role_id', '=', 'roles.id');
-            }
+        $usuarios = Role::with([
+            'users' 
         ])->get();
 
-
-        dd($usuarios);
         return view('erp.users.index', compact('usuarios'));
     }
 
