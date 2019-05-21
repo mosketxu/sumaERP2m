@@ -25,8 +25,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-6">
                     @include('partials._cardCondicionesFacturacion')
+                </div>
+                <div class="col-6">
+                    @include('partials._cardPus')
                 </div>
             </div>
         </div>

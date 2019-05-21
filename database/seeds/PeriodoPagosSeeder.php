@@ -16,6 +16,7 @@ class PeriodoPagosSeeder extends Seeder
         DB::table('periodo_pagos')->insert([
             ['periodopago' => 'Mensual'],
             ['periodopago' => 'Trimestral'],
+            ['periodopago' => 'Trim-Mensual'],
             ['periodopago' => 'Anual'],
             ['periodopago' => 'One Shot'],
             ['periodopago' => 'No definido'],

@@ -61,9 +61,9 @@
                             <td>{{substr($banco->bank,0,5)}}</td>
                             <td>{{$banco->iban}}</td>
                         @endforeach
-                        <td>{{$empresa->condFacturacions->periodopago}}</td>
-                        <td>{{$empresa->condFacturacions->formapago}}</td>
-                        <td>{{$empresa->condFacturacions->diavencimiento}}</td>
+                        <td>{{optional($empresa->condFacturacions)->periodopago}}</td>
+                        <td>{{optional($empresa->condFacturacions)->formapago}}</td>
+                        <td>{{optional($empresa->condFacturacions)->diavencimiento}}</td>
                         <td>
                             @if($empresa->estado==1)
                                 <i class="fa fa-check "></i>

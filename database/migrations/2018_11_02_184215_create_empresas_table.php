@@ -33,8 +33,8 @@ class CreateEmpresasTable extends Migration
             $table->string('web')->nullable();
             $table->string('idioma', 2)->default('es');
             $table->string('cuentacontable')->nullable();
-            $table->integer('marta')->default('100');
-            $table->integer('susana')->default('0');
+            $table->integer('marta')->nullable();
+            $table->integer('susana')->nullable();
             $table->boolean('estado')->default('1');
             $table->string('observaciones')->nullable();
             $table->timestamps();

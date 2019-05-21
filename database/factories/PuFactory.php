@@ -7,6 +7,6 @@ $factory->define(App\Pu::class, function (Faker $faker) {
         'name' => $faker->word,
         'ce'=>$faker->word,
         'us' => $faker->word,
-        'pw' => $faker->numberBetween(1,10000),
+        'pu' => $faker->numberBetween(1,10000),
     ];
 });

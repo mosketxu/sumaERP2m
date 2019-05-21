@@ -31,9 +31,9 @@ class Contacto extends Model
         return $this->belongsTo(Empresa::class);
     }
 
-    public function departamentos()
+    public function departamento()
     {
-        return $this->hasMany(Departamentos::class);
+        return $this->belongsTo(Departamento::class);
     }
 
     public function condicionPagos()

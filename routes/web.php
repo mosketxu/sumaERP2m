@@ -55,6 +55,18 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'erp'], function () {
         require __DIR__ .'/empresasAsociadas.php';
     });
 
+    // rutas de contactos
+    Route::resource('contacto', 'ContactoController')->middleware('admin');
+
+    // rutas de bancos
+    Route::resource('banco', 'BancoController')->middleware('admin');
+
+    // rutas de pus
+    Route::resource('pu', 'PuController')->middleware('admin');
+
+    // rutas condiciones facturacion
+    Route::resource('condfact', 'CondicionFacturacionController')->only(['index','create','store','show','edit','update','destroy']);
+        
     // rutas ejemplos ajax a borrar
     Route::resource('genero', 'GeneroController');
     Route::get('generos', 'GeneroController@listing');

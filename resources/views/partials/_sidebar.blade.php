@@ -27,6 +27,11 @@
               <span>Usuarios</span></a>
           </li>
         @endadmin
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('contacto.index')}}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Contactos</span></a>
+        </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

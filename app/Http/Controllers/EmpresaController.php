@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Empresa;
 use Illuminate\Support\Facades\Auth;
-use App\Contacto;
+use App\{Empresa,Contacto,Pu,Pais,Provincia, TipoEmpresa};
 
 class EmpresaController extends Controller
 {
@@ -21,7 +20,7 @@ class EmpresaController extends Controller
             $busqueda = $request->busca;
         } else {
             $busqueda = '';
-        }
+        } 
 
         $user = auth()->user()->id;
 
@@ -49,34 +48,40 @@ class EmpresaController extends Controller
     // Llamo al formulario donde voy a crear el registro
     public function create()
     {
-        // dd('llego');
         $empresas = Empresa::all();
-        return view('erp.empresas.create', compact('empresas'));
+        $paises=Pais::all();
+        $provincias=Provincia::all();
+        $tipos=TipoEmpresa::all();
+        return view('erp.empresas.create', compact('empresas','paises','provincias','tipos'));
     }
 
     // Metodo donde recibo los datos del formulario Create y los guardo en la BBDD
 
     public function store(Request $request)
     {
-        // if (!$request->ajax()) return redirect('/');
+        $request->validate([
+            'newempresaname' => 'required|unique:empresas,name',
+            // 'newuserpassword' => 'required|min:6|confirmed',
+        ]);
 
         $empresa = new Empresa();
 
-        $empresa->name = $request->name;
-        $empresa->direccion = $request->direccion;
-        $empresa->codpostal = $request->codpostal;
-        $empresa->localidad = $request->localidad;
-        $empresa->provincia_id = $request->provincia_id;
-        $empresa->pais_id = $request->pais_id;
-        $empresa->cifnif = $request->cifnif;
-        $empresa->tfno = $request->tfno;
-        $empresa->email = $request->email;
-        $empresa->web = $request->web;
-        $empresa->idioma = $request->idioma;
-        $empresa->cuentacontable = $request->cuentacontable;
-        $empresa->marta = $request->marta;
-        $empresa->susana = $request->susana;
-        $empresa->observaciones = $request->observaciones;
+        $empresa->name = $request->newempresaname;
+        $empresa->cifnif = $request->newempresanif;
+        $empresa->tipoempresa_id = $request->newempresatipo;
+        $empresa->direccion = $request->newempresadireccion;
+        $empresa->codpostal = $request->newempresacp;
+        $empresa->localidad = $request->newempresalocalidad;
+        $empresa->provincia_id = $request->newempresaprovincia;
+        $empresa->pais_id = $request->newempresapais;
+        $empresa->tfno = $request->newempresatfno;
+        $empresa->email = $request->newempresaemail;
+        $empresa->web = $request->newempresaweb;
+        $empresa->idioma = $request->newempresaidioma;
+        $empresa->cuentacontable = $request->newempresacuentacontable;
+        $empresa->marta = $request->newempresamarta;
+        $empresa->susana = $request->newempresasusana;
+        $empresa->observaciones = $request->newempresaobservaciones;
         $empresa->estado = 1;
 
         $empresa->save();;
@@ -102,10 +107,9 @@ class EmpresaController extends Controller
                 }
             ])->first();
 
-        
         $contactos= Contacto::where('empresa_id',$empresa->id)->get();
-
-        return view('erp.empresas.show', compact('empresa','contactos'));
+        $pus=Pu::where('empresa_id',$empresa->id)->get();
+        return view('erp.empresas.show', compact('empresa','contactos','pus'));
     }
 
     // Con este método llamo al formulario donde voy a editar el registro

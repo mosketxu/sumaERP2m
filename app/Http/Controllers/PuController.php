@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\{Contacto, Departamento};
+use App\Pu;
 use Illuminate\Http\Request;
-use App\Empresa;
 
-class ContactoController extends Controller
+class PuController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,8 +19,8 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        $contactos=Contacto::get();
-        return view('erp.contactos.index',compact('contactos'));
+        $pus=Pu::get();
+        return view('erp.pu.index',compact('pus')); 
     }
 
     /**
@@ -49,10 +47,10 @@ class ContactoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Contacto  $contacto
+     * @param  \App\Pu  $pu
      * @return \Illuminate\Http\Response
      */
-    public function show(Contacto $contacto)
+    public function show(Pu $pu)
     {
         //
     }
@@ -60,10 +58,10 @@ class ContactoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Contacto  $contacto
+     * @param  \App\Pu  $pu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contacto $contacto)
+    public function edit(Pu $pu)
     {
         //
     }
@@ -72,10 +70,10 @@ class ContactoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contacto  $contacto
+     * @param  \App\Pu  $pu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contacto $contacto)
+    public function update(Request $request, Pu $pu)
     {
         //
     }
@@ -83,10 +81,10 @@ class ContactoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Contacto  $contacto
+     * @param  \App\Pu  $pu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacto $contacto)
+    public function destroy(Pu $pu)
     {
         //
     }

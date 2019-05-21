@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App \{
-    User,
-    Role,
-    Empresa,
-    UserEmpresa
+use App \{User,Role,Empresa,UserEmpresa
 };
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -23,14 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        // $usuarios = Role::with([
-        //     'users' 
-        // ])->get();
-
         $usuarios = User::get();
-
-        // dd($usuarios->role);
-
         return view('erp.users.index', compact('usuarios'));
     }
 
@@ -46,7 +35,7 @@ class UserController extends Controller
         $request->validate([
             'newusername' => 'required',
             'newuseremail' => 'required|email|unique:users,email',
-            // 'newuserpassword' => 'required|min:6|confirmed',
+            'newuserpassword' => 'required|min:6|confirmed',
             'newuserpassword' => 'required|min:6',
             'newuserrole' => 'required'
         ]);

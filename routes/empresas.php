@@ -1,5 +1,6 @@
 <?php
     Route::get('/', 'EmpresaController@index')->name('empresas.index');
+    Route::post('/', 'EmpresaController@store')->name('empresas.store');
     Route::get('/create', 'EmpresaController@create')->name('empresas.create');
     Route::get('/{slug}', 'EmpresaController@show')->name('empresas.show');
     Route::get('/{slug}/edit', 'EmpresaController@edit')->name('empresas.edit');
