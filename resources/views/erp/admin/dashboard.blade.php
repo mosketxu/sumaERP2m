@@ -14,7 +14,7 @@
             </ol>
         </div>
         <!-- tabla empresas -->
-        @include('partials._cardEmpresas')
+        @include('partials._tablaEmpresas')
     </div>
 @endsection
 

@@ -18,6 +18,6 @@ class Bank extends Model
 
     public function banco()
     {
-        return $this->hasMany()(Banco::class);
+        return $this->hasMany(Banco::class);
     }
 }

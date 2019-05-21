@@ -5,17 +5,27 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Empresa</a>
+                    <a href="{{ route('empresas.index')}}">Empresas</a>
                 </li>
                 <li class="breadcrumb-item active">{{$empresa->name}}</li>
             </ol>
             <div class="row">
-                <div class="col-sm-4 px-1">
-                    @include('partials._cardPpalEmpresa')
+                <div class="col">
+                    @include('partials._cardEmpresa')
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     @include('partials._cardContactos')
                 </div>
-                <div class="col-sm-4  px-1  ">
+            </div>
+            <div class="row">
+                <div class="col">
                     @include('partials._cardBancos')
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     @include('partials._cardCondicionesFacturacion')
                 </div>
             </div>

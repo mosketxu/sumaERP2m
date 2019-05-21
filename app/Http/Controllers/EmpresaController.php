@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Empresa;
 use Illuminate\Support\Facades\Auth;
+use App\Contacto;
 
 class EmpresaController extends Controller
 {
@@ -100,12 +101,17 @@ class EmpresaController extends Controller
                         ->join('periodo_pagos', 'periodo_pagos.id', '=', 'condicion_facturacions.periodopago_id');
                 }
             ])->first();
-        return view('erp.empresas.show', compact('empresa'));
+
+        
+        $contactos= Contacto::where('empresa_id',$empresa->id)->get();
+
+        return view('erp.empresas.show', compact('empresa','contactos'));
     }
 
     // Con este método llamo al formulario donde voy a editar el registro
     public function edit($slug)
     {
+        dd('no listo');
         $empresa = Empresa::whereSlug($slug)
             ->with([
                 'tipoempresa',

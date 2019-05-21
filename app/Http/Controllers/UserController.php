@@ -23,9 +23,13 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = Role::with([
-            'users' 
-        ])->get();
+        // $usuarios = Role::with([
+        //     'users' 
+        // ])->get();
+
+        $usuarios = User::get();
+
+        // dd($usuarios->role);
 
         return view('erp.users.index', compact('usuarios'));
     }

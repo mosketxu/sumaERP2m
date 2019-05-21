@@ -20,3 +20,34 @@
 .bg-medioactivo {
     background-color: var(--medioactivo);
 }
+
+.col-15ths,
+.col-xs-15ths,
+.col-sm-15ths,
+.col-md-15ths,
+.col-lg-15ths {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.col-15ths {
+    width: 6.8%;
+    float: right;
+  }
+
+.col-2-15ths {
+    width: 10%;
+    float: right;
+}
+
+.col-3-15ths {
+    width: 15%;
+    float: right;
+}
+
+.col-4-15ths {
+    width: 20%;
+    float: right;
+}
