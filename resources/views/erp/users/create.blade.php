@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item active">@yield('title')</li>
             </ol>
             <!-- Formulario nuevo usuario -->
-        @include('partials._cardNewUser')        
+        @include('partials._cardUserNew')        
     </div>
 @endsection
 

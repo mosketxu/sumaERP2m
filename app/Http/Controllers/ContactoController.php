@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\{Contacto, Departamento};
 use Illuminate\Http\Request;
-use App\Empresa;
+use App\{Contacto};
+
 
 class ContactoController extends Controller
 {
@@ -14,16 +14,24 @@ class ContactoController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $contactos=Contacto::get();
-        return view('erp.contactos.index',compact('contactos'));
+        if ($request->busca) {
+            $busqueda = $request->busca;
+        } else {
+            $busqueda = '';
+        } 
+    
+        $contactos=Contacto::search($request->busca)
+            ->with([
+                'departamento',
+            ])
+            ->orderBy('name','asc')
+            ->paginate(10);
+
+        return view('erp.contactos.index', compact('contactos','busqueda'));
     }
+
 
     /**
      * Show the form for creating a new resource.

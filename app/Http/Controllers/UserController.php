@@ -17,10 +17,18 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $usuarios = User::get();
-        return view('erp.users.index', compact('usuarios'));
+        if ($request->busca) {
+            $busqueda = $request->busca;
+        } else {
+            $busqueda = '';
+        } 
+
+        $usuarios = User::search($request->busca)
+            ->orderBy('name','asc')
+            ->paginate(10);
+        return view('erp.users.index', compact('usuarios','busqueda'));
     }
 
     public function create()
@@ -122,10 +130,11 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        dd('a');
         $user = Auth::user();
         $usuario = User::findOrfail($id);
         if ($user->can('delete', $user)) {
-            $usuario->delete();
+            User::findOrFail($id)->delete();
             return redirect()->route('user.index')->with('status', 'Usuario ' . $usuario->name . ' eliminado!');;
         } else {
             echo 'Not Authorized.';

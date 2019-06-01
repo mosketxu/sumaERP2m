@@ -14,8 +14,8 @@ class CreatePusTable extends Migration
     public function up()
     {
         Schema::create('pus', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('empresa_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->string('name');
             $table->string('url')->nullable();

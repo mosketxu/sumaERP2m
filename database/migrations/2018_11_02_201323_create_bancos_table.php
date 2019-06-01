@@ -14,10 +14,10 @@ class CreateBancosTable extends Migration
     public function up()
     {
         Schema::create('bancos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('empresa_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
-            $table->unsignedInteger('bank_id');
+            $table->unsignedBigInteger('bank_id');
             $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
             $table->string('iban');
             $table->boolean('principal')->default(0);

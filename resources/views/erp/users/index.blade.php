@@ -17,7 +17,7 @@
                 </div>
             @endif
             <!-- tabla usuarios -->
-            @include('partials._cardUsers')
+            @include('partials._tablaUsers')
         </div>
 
 @endsection

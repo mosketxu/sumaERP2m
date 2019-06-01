@@ -26,6 +26,15 @@ class Contacto extends Model
         });
     }
 
+    public function scopeSearch($query, $busca)
+    {
+      return $query->where('name', 'LIKE', "%$busca%")
+        ->orWhere('lastname', 'LIKE', "%$busca%")
+        ->orWhere('email1', 'LIKE', "%$busca%")
+        ->orWhere('email2', 'LIKE', "%$busca%")
+        ;
+    }
+
     public function empresa()
     {
         return $this->belongsTo(Empresa::class);

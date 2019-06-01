@@ -13,8 +13,8 @@
             <div class="form-group col  my-1 px-1 ">
                 <label class="display-sm1">Observaciones</label>
             </div>
-            <div class="form-group col-1  my-1 px-1  text-center">
-                <label class="display-sm1">Op.</label>
+            <div class="form-group col-1  my-1 px-1  text-right">
+                <label class="display-sm1">Est. &nbsp; &nbsp; Op. &nbsp; &nbsp; </label>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="form-row mx-105">
             <div class="form-group col-1 my-1 px-1">
                 @if($banco->principal===1)
-                <i class="fas fa-star  text-success"></i>
+                &nbsp; &nbsp; <i class="fas fa-star  text-success"></i>
                 @else
                 <i class="far fa-star text-success"></i>
                 @endif

@@ -10,8 +10,8 @@
             <div class="form-group col my-1 px-1"> 
                 <label class="display-sm1">Día Vencimiento</label>
             </div>
-            <div class="form-group col-1  my-1 px-1 text-center">
-                <label class="display-sm1">Op.</label>
+            <div class="form-group col-1  my-1 px-1  text-right">
+                <label class="display-sm1"> Op. &nbsp; &nbsp; </label>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\{Empresa,Contacto,Pu,Pais,Provincia, TipoEmpresa};
+use App\{Empresa,Contacto,Pu,Pais,Provincia, TipoEmpresa, Rules\MartaSusana};
 
 class EmpresaController extends Controller
 {
@@ -59,10 +59,22 @@ class EmpresaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules= [
             'newempresaname' => 'required|unique:empresas,name',
+            'newempresamarta'=>'required',
+            'newempresasusana'=>'required',
+            'newtotalmartasusana'=>new MartaSusana(), // ver en Rules\MartaSusana};
             // 'newuserpassword' => 'required|min:6|confirmed',
-        ]);
+        ];
+         
+        $messages = [
+            'newempresaname.required' => 'Debes poner el nombre de la empresa.',
+            'newempresaname.unique' => 'Ya existe la empresa ' . $request->newempresaname,
+            'newempresamarta.required'=>'Marta debe tener una valor',
+            'newempresasusana.required'=>'Susana debe tener una valor',
+        ];
+
+        $this->validate($request,$rules,$messages);
 
         $empresa = new Empresa();
 

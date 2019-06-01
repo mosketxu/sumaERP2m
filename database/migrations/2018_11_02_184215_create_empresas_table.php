@@ -14,11 +14,11 @@ class CreateEmpresasTable extends Migration
     public function up()
     {
         Schema::create('empresas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug')->nullable();
             $table->string('alias')->nullable();
-            $table->unsignedInteger('tipoempresa_id')->nullable();
+            $table->unsignedBigInteger('tipoempresa_id')->nullable();
             $table->foreign('tipoempresa_id')->references('id')->on('tipo_empresas');
             $table->string('direccion')->nullable();
             $table->string('codpostal')->nullable();

@@ -14,8 +14,8 @@
                 <label class="display-sm1">Pu</label>
             </div>
 
-            <div class="form-group col-2  my-1 px-1  text-center">
-                <label class="display-sm1">Op.</label>
+            <div class="form-group col-2  my-1 px-1  text-right">
+                <label class="display-sm1">Est. &nbsp; &nbsp; Op. &nbsp; &nbsp;</label>
             </div>
         </div>
     </div>

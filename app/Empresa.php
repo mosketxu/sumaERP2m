@@ -36,7 +36,7 @@ class Empresa extends Model
 
   public function tipoempresa()
   {
-    return $this->belongsTo(TipoEmpresa::class);
+    return $this->belongsTo(TipoEmpresa::class)->withDefault();
   }
 
   public function provincia()
@@ -61,7 +61,10 @@ class Empresa extends Model
 
   public function condFacturacions()
   {
-    return $this->hasOne(CondicionFacturacion::class);
+    return $this->hasOne(CondicionFacturacion::class)->withDefault([
+        'formapago'=>'no def',
+        'periodopago'=>'no def',
+        ]);
   }
 
   public function contactos()

@@ -43,6 +43,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function scopeSearch($query, $busca)
+    {
+      return $query->where('name', 'LIKE', "%$busca%")->orWhere('lastname', 'LIKE', "%$busca%");
+    }
+
     public function pathAttachment()
     {
         return "/images/users/" . $this->picture;

@@ -14,7 +14,7 @@ class CreateTipoEmpresasTable extends Migration
     public function up()
     {
         Schema::create('tipo_empresas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('tipempr3', 3);
             $table->string('tipoempresa');
             $table->timestamps();

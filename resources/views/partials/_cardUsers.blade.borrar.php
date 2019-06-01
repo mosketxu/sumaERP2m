@@ -32,7 +32,7 @@
                         <th>Rol</th>
                         <th>email</th>
                         <th>Estado</th>
-                        <th>Acciones</th>
+                        <th>Accioaanes</th>
                     </tr>
                 </thead>
                 <tbody>

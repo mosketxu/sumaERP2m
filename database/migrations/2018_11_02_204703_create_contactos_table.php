@@ -15,10 +15,10 @@ class CreateContactosTable extends Migration
     public function up()
     {
         Schema::create('contactos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('empresa_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
-            $table->unsignedInteger('departamento_id');
+            $table->unsignedBigInteger('departamento_id');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->boolean('esfacturacion')->default('1');
             $table->string('name');

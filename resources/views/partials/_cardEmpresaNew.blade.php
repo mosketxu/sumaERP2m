@@ -47,6 +47,7 @@
                 <div class="form-group col-2">
                     <label for="newempresaprovincia">Provincia</label>
                     <select class="custom-select custom-select-sm" id="newempresaprovincia" name="newempresaprovincia">
+                        <option value="08">Barcelona</option>                                
                         @foreach ($provincias as $provincia )
                         <option value="{{$provincia->id}}">{{$provincia->name}}</option>                                
                         @endforeach
@@ -55,6 +56,7 @@
                 <div class="form-group col-2">
                     <label for="newempresapais">País</label>
                     <select class="custom-select custom-select-sm" id="newempresapais" name="newempresapais">
+                        <option value="ES">ESP-España</option>                                
                         @foreach ($paises as $pais )
                         <option value="{{$pais->id}}">{{$pais->c3}}-{{$pais->name}}</option>                                
                         @endforeach
@@ -77,23 +79,23 @@
                 <div class="form-group col-1">
                     <label for="newempresaidioma">Idioma</label>
                     <select class="custom-select custom-select-sm" id="newempresaidioma" name="newempresaidioma">
-                        <option value="ES">ES</option>                                
+                        <option value="ES" selected>ES</option>                                
                         <option value="EN">EN</option>                                
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="contenido">
                 <div class="form-group col">
                     <label for="newempresacuentacontable">Cuenta contable</label>
                     <input type="text" class="form-control form-control-sm" id="newempresacuentacontable" name="newempresacuentacontable" value="{{ old('newempresacuentacontable') }}" />
                 </div>
                 <div class="form-group col-1">
                     <label for="newempresamarta">% Marta</label>
-                    <input type="text" class="form-control form-control-sm" id="newempresamarta" name="newempresamarta" value="{{ old('newempresamarta') }}"/>
+                    <input type="text" class="form-control form-control-sm" id="newempresamarta" name="newempresamarta" value="{{ old('newempresamarta','100') }}" onchange="cambiaMarta()"/>
                 </div>
                 <div class="form-group col-1">
                     <label for="newempresasusana">% Susana</label>
-                    <input type="text" class="form-control form-control-sm" id="newempresasusana" name="newempresasusana" value="{{ old('newempresasusana') }}"/>
+                    <input type="text" class="form-control form-control-sm" id="newempresasusana" name="newempresasusana" value="{{ old('newempresasusana','0') }}" onchange="cambiaSusana()"/>
                 </div>
                 <div class="form-row col">
                     <div class="form-group col">
@@ -101,8 +103,11 @@
                         <textarea name="observaciones" class="form-control form-control-sm" id="observaciones"></textarea>
                     </div>
                 </div>
+                <input type="text" id="newtotalmartasusana" name="newtotalmartasusana" value="100"/>
+
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+            <input type="button" class="btn btn-primary" name="Enviar" value="Enviar" onclick="form.submit()">
         </form>
     </div>
 </div>

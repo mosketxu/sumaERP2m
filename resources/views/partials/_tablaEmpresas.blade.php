@@ -45,8 +45,7 @@
                         <th>P.Pago</th>
                         <th>F.Pago</th>
                         <th>Vto</th>
-                        <th>Estado</th>
-                        <th>Op.</th>
+                        <th class="text-right">Est. &nbsp; &nbsp;  &nbsp; Op. &nbsp; &nbsp; </th>
                     </tr>
                 </thead>
                 <tbody class="text-muted buscar">
@@ -57,25 +56,34 @@
                         <td>{{$empresa->tipoempresa->tipempr3}}</td>
                         <td>{{$empresa->cifnif}}</td>
                         <td>{{$empresa->cuentacontable}}</td> 
+
+                        @if(count($empresa->bancos)>0)
                         @foreach ($empresa->bancos as $banco)
                             <td>{{substr($banco->bank,0,5)}}</td>
                             <td>{{$banco->iban}}</td>
                         @endforeach
-                        <td>{{optional($empresa->condFacturacions)->periodopago}}</td>
-                        <td>{{optional($empresa->condFacturacions)->formapago}}</td>
-                        <td>{{optional($empresa->condFacturacions)->diavencimiento}}</td>
+                        @else
+                            <td>no def</td>
+                            <td>no def</td>
+                        @endif
+                        <td>{{$empresa->condFacturacions->periodopago}}</td>
+                        <td>{{$empresa->condFacturacions->formapago}}</td>  {{-- tiene withDefault() en el modelo --}}
+                        <td>{{optional($empresa->condFacturacions)->diavencimiento  ?: 'no def'}}</td>
+                        <td class="text-right">
+                                @if($empresa->estado===0)
+                                <i class="fas fa-circle text-danger fa-xs"></i>
+                                @elseif($empresa->estado===1)
+                                <i class="fas fa-circle text-success fa-xs"></i>
+                                @else
+                                <i class="fas fa-circle text-warning fa-xs"></i>
+                                @endif
+                                &nbsp; &nbsp;
+                                <a href="{{route('empresas.show',$empresa->slug) }}" title="Show"><i class="far fa-eye text-success"></i></a>
+                                <a href="{{route('empresas.edit',$empresa->slug) }}"  title="Edit"><i class="far fa-edit text-primary"></i></a>
+                                <a href="{{route('empresas.destroy',$empresa->id)}}" title="Delete"><i class="far fa-trash-alt text-danger"></i></a>
+                                </td>
+    
                         <td>
-                            @if($empresa->estado==1)
-                                <i class="fa fa-check "></i>
-                            @else
-                                <i class="far fa-times-circle text-danger"></i>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{route('empresas.show',$empresa->slug) }}" title="Show"><i class="far fa-eye text-success"></i></a>
-                            <a href="{{route('empresas.edit',$empresa->slug) }}"  title="Edit"><i class="far fa-edit text-primary"></i></a>
-                            <a href="{{route('empresas.destroy',$empresa->id)}}" title="Delete"><i class="far fa-trash-alt text-danger"></i></a>
-                        </td>
                     </tr>
                 @endforeach
                 </tbody>
