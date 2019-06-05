@@ -62,7 +62,7 @@
                             @endif
                             &nbsp; &nbsp;
                                 <a href="{{route('user.show',$usuario->slug) }}" title="Show"><i class="far fa-eye text-success"></i></a>
-                                <a href="{{route('user.edit',$usuario->slug) }}"  title="Edit"><i class="far fa-edit text-primary"></i></a>
+                                <a href="{{route('user.edit',$usuario->id) }}"  title="Edit"><i class="far fa-edit text-primary"></i></a>
                                 {{-- @csrf --}}
                                 {{-- @method('DELETE') --}}
                                 {{-- <button class="btn btn-link m-0 p-0" type="submit"><i class="far fa-fw fa-trash-alt btn-sm text-danger"></i></button> --}}

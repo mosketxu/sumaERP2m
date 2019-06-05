@@ -18,6 +18,13 @@
 @endsection
 @push('scriptchosen')
     <script>
+        $(document).ready(function() {
+        
+        $('.select2').select2({
+            placeholder: 'Usuarios asociados'
+            });
+        });
+
         function cambiaMarta(){
             var $susana=100 - parseInt($('#newempresamarta').val());
             $('#newempresasusana').val($susana);

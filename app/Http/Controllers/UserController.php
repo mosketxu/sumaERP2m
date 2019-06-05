@@ -35,18 +35,28 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $empresas = Empresa::all();
-        return view('erp.users.create', compact('roles', 'empresas'));
+        $users=User::all();
+        return view('erp.users.create', compact('roles', 'empresas'.'users'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules=[
             'newusername' => 'required',
             'newuseremail' => 'required|email|unique:users,email',
             'newuserpassword' => 'required|min:6|confirmed',
             'newuserpassword' => 'required|min:6',
             'newuserrole' => 'required'
-        ]);
+        ];
+
+        $messages=[
+            'newusername.required'=>"Debes intruducir el nombre del usuario.",
+            'newuseremail.required'=>"Debes intruducir un email.",
+            'newuseremail.email'=>"El email ya existe.",
+            'newuserrole.required'=>"Debes elegir un rol",
+        ];
+
+        $this->validate($request,$rules,$messages);
 
         $user = new User([
             'name' => $request->get('newusername'),
@@ -55,6 +65,7 @@ class UserController extends Controller
             'password' => bcrypt($request->get('newuserpassword')),
             'role' => $request->get('newuserrole'),
         ]);
+        
         $user->save();
 
         $cont = 0;
@@ -79,6 +90,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $userEdit = User::find($id);
+        // $userEdit=User::whereSlug($slug);
         $roles = Role::all();
 
         $empresasDisponibles = Empresa::whereNotIn('id', function ($query) use ($id) {

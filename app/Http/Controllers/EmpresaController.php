@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\{Empresa,Contacto,Pu,Pais,Provincia, TipoEmpresa, Rules\MartaSusana};
+use App\{Empresa,User,Contacto,Pu,Pais,Provincia, TipoEmpresa, UserEmpresa, Rules\MartaSusana};
 
 class EmpresaController extends Controller
 {
@@ -52,7 +52,8 @@ class EmpresaController extends Controller
         $paises=Pais::all();
         $provincias=Provincia::all();
         $tipos=TipoEmpresa::all();
-        return view('erp.empresas.create', compact('empresas','paises','provincias','tipos'));
+        $users=User::all();
+        return view('erp.empresas.create', compact('empresas','paises','provincias','tipos','users'));
     }
 
     // Metodo donde recibo los datos del formulario Create y los guardo en la BBDD
@@ -98,7 +99,19 @@ class EmpresaController extends Controller
 
         $empresa->save();;
 
-        return redirect('erp/empresas')->with('message', 'Guardado Satisfactoriamente !');
+        $cont = 0;
+        
+        if($empresaUsers = $request->newempresauserId){
+            while ($empresaUsers && $cont  < count($empresaUsers)) {
+                $empuser = new UserEmpresa();
+                $empuser->user_id = $empresaUsers[$cont];
+                $empuser->empresa_id = $empresa->id;
+                $empuser->save();
+                $cont = $cont + 1;
+            }
+        }
+
+        return redirect('erp/empresas')->with('message', 'Empresa guardada satisfactoriamente !');
     }
 
     // Con este método llamo al formulario donde voy a MOSTRAR el registro

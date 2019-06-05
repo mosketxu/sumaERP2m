@@ -103,9 +103,21 @@
                         <textarea name="observaciones" class="form-control form-control-sm" id="observaciones"></textarea>
                     </div>
                 </div>
-                <input type="text" id="newtotalmartasusana" name="newtotalmartasusana" value="100"/>
-
+                <input type="hidden" id="newtotalmartasusana" name="newtotalmartasusana" value="100"/>
             </div>
+            <div class="row">
+                <div class="input-group input-group-sm mb-3 col">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-fw fa-user-plus text-primary"></i></span>
+                    </div>
+                    <select id="listausuarios" data-placeholder="Usuarios..." class="form-control select2"  multiple  name="newempresauserId[]">
+                        @foreach ($users as $user )
+                        <option value="{{$user->id}}">{{$user->name}}</option>                                
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
             <input type="button" class="btn btn-primary" name="Enviar" value="Enviar" onclick="form.submit()">
         </form>
